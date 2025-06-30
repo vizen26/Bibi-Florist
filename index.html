@@ -4,21 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Pengeluaran Keluarga</title>
+
+  <!-- Grid.js & Chart.js -->
   <script type="module" src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
   <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fff9f0;
+      background: linear-gradient(to right, #fffefc, #fff9f2);
       margin: 0;
       padding: 20px;
-      color: #444;
+      color: #3a2e25;
     }
 
     h1 {
       text-align: center;
-      color: #5b4c40;
+      color: #4e3d30;
+      margin-bottom: 40px;
     }
 
     .container {
@@ -29,15 +41,22 @@
     .card {
       background: #fffdf8;
       padding: 24px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      margin-bottom: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
       border: 1px solid #f0e9dd;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     }
 
     .card h2 {
       margin-top: 0;
       color: #5b4c40;
+      margin-bottom: 16px;
     }
 
     canvas {
@@ -72,7 +91,7 @@
       background: #fff8ec;
     }
 
-    /* Tombol mengambang */
+    /* Tombol Mengambang */
     #formButton {
       position: fixed;
       bottom: 24px;
@@ -83,18 +102,23 @@
       padding: 14px 20px;
       font-weight: bold;
       border-radius: 50px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
       cursor: pointer;
       z-index: 9999;
       text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    #formButton:hover {
+      background-color: #eebc74;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" data-aos="fade-up" data-aos-duration="800">
     <h1>Dashboard Pengeluaran Keluarga</h1>
 
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-delay="100">
       <h2>Ringkasan Keuangan</h2>
       <table>
         <tr>
@@ -112,23 +136,25 @@
       </table>
     </div>
 
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-delay="200">
       <h2>Pengeluaran per Kategori</h2>
       <canvas id="chartKategori"></canvas>
     </div>
 
-    <div class="card">
+    <div class="card" data-aos="fade-up" data-aos-delay="300">
       <h2>Tabel Data Pengeluaran</h2>
       <div id="table-data"></div>
     </div>
   </div>
 
-  <!-- Tombol Mengambang (Tab Baru) -->
+  <!-- Tombol Tambah -->
   <a href="https://forms.gle/Z8HQvgw1HX4WTPhr9" target="_blank" id="formButton">
     ➕ Tambah Pengeluaran
   </a>
 
   <script>
+    AOS.init();
+
     const sheetID = "1PuNuDQj20WUzSP4K8sbfxYQyxDi2KYMSrIG_1jaA3VU";
     const formSheet = "Form Responses";
     const dashboardSheet = "Dashboard";
