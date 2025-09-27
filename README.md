@@ -1,2 +1,2 @@
-# catatankeuanganku
-berisi catatan keuangan
+# Lapak Ikan Kamad
+Semua Jenis Ikan Tersedia Disini
