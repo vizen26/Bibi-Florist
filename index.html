@@ -4,185 +4,364 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lapak Ikan Kamad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <style>
-    :root{
-      --primary:#426D9E; /* biru pastel agak gelap */
-      --primary-600:#385c87;
-      --bg:#f8fbfd;
-      --muted:#6b7280;
-      --card-shadow: 0 6px 18px rgba(34,49,63,0.06);
-      --radius:12px;
+    :root {
+      --primary: #426d9e;
+      --primary-600: #385c87;
+      --bg: #f8fbfd;
+      --muted: #6b7280;
+      --card-shadow: 0 6px 18px rgba(34, 49, 63, 0.06);
+      --radius: 12px;
     }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      background: var(--bg);
+      color: #111827;
+      -webkit-font-smoothing: antialiased;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 34px 16px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-box {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    header h1 {
+      font-family: "Oswald", sans-serif;
+      margin: 6px 0 4px;
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+    header p {
+      margin: 0;
+      opacity: 0.95;
+    }
+    nav {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 6px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-size: 14px;
+  z-index: 10;
+}
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: 'Poppins', Arial, sans-serif;
-      background:var(--bg);
-      color:#111827;
-      -webkit-font-smoothing:antialiased;
-    }
+nav a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  transition: background 0.2s ease;
+  display: inline-block;
+}
 
-    /* HEADER (bergelombang) */
-    header{
-      background:var(--primary);
-      color:white;
-      text-align:center;
-      padding:34px 16px 64px;
-      position:relative;
-      overflow:hidden;
+nav a:hover {
+  background: var(--primary);
+  color: white;
+}
+    .wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 80px;
+      pointer-events: none;
     }
-    .logo-box{
-      display:inline-block;
-      background:white;
-      color:var(--primary);
-      padding:8px 14px;
-      border-radius:10px;
-      font-weight:700;
-      font-size:20px;
-      margin-bottom:8px;
+    .wave svg {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
-    header h1{ font-family:'Oswald',sans-serif; margin:6px 0 4px; font-size:28px; letter-spacing:2px }
-    header p{ margin:0; opacity:0.95 }
-
-    /* nav boxes (white labels) */
-    nav{
-      margin-top:16px;
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      z-index:2;
-      position:relative;
+    main {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px 60px;
     }
-    nav a{
-      background:white;
-      color:var(--primary);
-      padding:8px 14px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:600;
-      box-shadow: 0 4px 12px rgba(66,109,158,0.08);
-      transition:transform .12s, background .12s;
-    }
-    nav a:hover{ transform:translateY(-3px); background:#f1f6ff; }
-
-    /* SVG wave */
-    .wave{
-      position:absolute;
-      left:0; right:0; bottom:-1px;
-      height:80px;
-      pointer-events:none;
-    }
-    .wave svg{ display:block; width:100%; height:100% }
-
-    /* main layout */
-    main{ max-width:1200px; margin:24px auto; padding:0 16px 60px; }
-
-    /* filter bar (white background, elegant) */
-    .filter-bar{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:center;
-      padding:12px;
-      background:white;
-      border-radius:12px;
-      box-shadow:var(--card-shadow);
-      margin-bottom:20px;
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 20px;
     }
     .filter-bar input[type=search],
-    .filter-bar select{
-      padding:10px 12px;
-      border:1px solid #e6e9ef;
-      border-radius:10px;
-      min-width:180px;
-      outline:none;
-      font-size:14px;
+    .filter-bar select {
+      padding: 10px 12px;
+      border: 1px solid #e6e9ef;
+      border-radius: 10px;
+      min-width: 180px;
+      outline: none;
+      font-size: 14px;
     }
-    .filter-bar input[type=search]{ width:380px; max-width:70vw; }
-
-    /* products grid */
-    .products{
-      display:grid;
-      gap:18px;
-      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    .filter-bar input[type=search] {
+      width: 380px;
+      max-width: 70vw;
     }
-    .card{
-      background:white;
-      border-radius:12px;
-      box-shadow:var(--card-shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      transition:transform .12s;
+    .products {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
-    .card:hover{ transform:translateY(-6px) }
-    .card img{ width:100%; height:150px; object-fit:cover; display:block; }
-    .card-body{ padding:12px; display:flex; flex-direction:column; gap:8px; flex:1 }
-    .card h3{ margin:0; color:var(--primary); font-size:16px }
-    .card .price{ font-weight:700; color:var(--primary-600) }
-    .card .actions{ margin-top:auto; display:flex; justify-content:center }
-    .btn{
-      border:0; border-radius:10px; padding:8px 12px; cursor:pointer; font-weight:700;
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.12s;
     }
-    .btn-detail{ background:var(--primary); color:white }
-    .btn-detail:hover{ background:var(--primary-600) }
-
-    /* detail view */
-    #detailView{ display:none; max-width:900px; margin:0 auto }
-    .detail-card{
-      background:white; border-radius:12px; padding:18px; box-shadow:var(--card-shadow);
-      display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;
+    .card:hover {
+      transform: translateY(-6px);
     }
-    .detail-left{ flex:1 1 360px; }
-    .detail-left img{ width:100%; border-radius:10px; height:auto; object-fit:cover; }
-    .detail-right{ flex:1 1 360px; display:flex; flex-direction:column; gap:12px }
-    .detail-right h2{ margin:0; color:var(--primary); font-size:22px }
-    .muted{ color:var(--muted); font-size:14px }
-    .qty-input{ width:140px; padding:10px; border-radius:8px; border:1px solid #e6e9ef }
-
-    /* cart floating (white background, navy icon) */
-    #cartBtn{
-      position:fixed; bottom:20px; right:20px; z-index:120;
-      background:white; color:var(--primary); border-radius:999px; padding:12px 14px;
-      box-shadow:0 10px 30px rgba(34,49,63,0.08); border:2px solid rgba(66,109,158,0.08);
-      cursor:pointer; display:flex; align-items:center; gap:8px;
-      font-weight:700;
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
     }
-    #cartCount{ background:var(--primary); color:white; padding:4px 8px; border-radius:999px; font-size:13px; }
-
-    /* cart modal */
-    #cartModal{
-      display:none; position:fixed; bottom:80px; right:20px; z-index:110;
-      background:white; width:340px; border-radius:12px; padding:14px; box-shadow:var(--card-shadow);
+    .card-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
     }
-    #cartModal h4{ margin:0 0 8px }
-    .cart-list{ max-height:260px; overflow:auto; font-size:14px; }
-    .cart-item{ display:flex; justify-content:space-between; gap:10px; align-items:center; padding:8px 0; border-bottom:1px dashed #f1f5f9 }
-    .cart-item .remove{ background:#ef4444; color:white; border:0; padding:6px 8px; border-radius:8px; cursor:pointer }
-
-    /* confirm modal (overlay) */
-    #confirmModal{
-      display:none; position:fixed; inset:0; background:rgba(2,6,23,0.45); z-index:200;
-      align-items:center; justify-content:center;
+    .card h3 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 16px;
     }
-    .confirm-box{ background:white; padding:20px; border-radius:12px; width:320px; text-align:center; box-shadow:0 10px 30px rgba(34,49,63,0.12) }
-    .confirm-box p{ margin:0 0 18px; color:#111827; font-weight:600; }
-    .confirm-yes{ background:var(--primary); color:white; border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700 }
-    .confirm-no{ background:#eef2ff; color:var(--primary); border:0; padding:10px 14px; border-radius:8px; cursor:pointer; margin-left:10px; }
-
-    /* footer (detail, contact, alamat with link) */
-    footer{ background:var(--primary); color:white; padding:28px 16px; margin-top:40px }
-    .footer-grid{ max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; }
-    .footer-grid h4{ margin-top:0; color:#fff; }
-    .footer-grid a{ color:#fff; text-decoration:underline; }
-    .copyright{ text-align:center; margin-top:18px; color:#e6efff; font-size:13px }
-
-    @media(max-width:900px){
-      .detail-card{ flex-direction:column; }
-      .footer-grid{ grid-template-columns:1fr; }
-      .filter-bar input[type=search]{ width:100% }
+    .card .price {
+      font-weight: 700;
+      color: var(--primary-600);
+    }
+    .card .actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+    }
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .btn-detail {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-detail:hover {
+      background: var(--primary-600);
+    }
+    #detailView {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .detail-card {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .detail-left {
+      flex: 1 1 360px;
+    }
+    .detail-left img {
+      width: 100%;
+      border-radius: 10px;
+      height: auto;
+      object-fit: cover;
+    }
+    .detail-right {
+      flex: 1 1 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .detail-right h2 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 22px;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .qty-input {
+      width: 140px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #e6e9ef;
+    }
+    #cartBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 120;
+      background: white;
+      color: var(--primary);
+      border-radius: 999px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 30px rgba(34, 49, 63, 0.08);
+      border: 2px solid rgba(66, 109, 158, 0.08);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    #cartCount {
+      background: var(--primary);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    #cartModal {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 110;
+      background: white;
+      width: 340px;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: var(--card-shadow);
+    }
+    #cartModal h4 {
+      margin: 0 0 8px;
+    }
+    .cart-list {
+      max-height: 260px;
+      overflow: auto;
+      font-size: 14px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed #f1f5f9;
+    }
+    .cart-item .remove {
+      background: #ef4444;
+      color: white;
+      border: 0;
+      padding: 6px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #confirmModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .confirm-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(34, 49, 63, 0.12);
+    }
+    .confirm-box p {
+      margin: 0 0 18px;
+      color: #111827;
+      font-weight: 600;
+    }
+    .confirm-yes {
+      background: var(--primary);
+      color: white;
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .confirm-no {
+      background: #eef2ff;
+      color: var(--primary);
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    footer {
+      background: var(--primary);
+      color: white;
+      padding: 28px 16px;
+      margin-top: 40px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+    .footer-grid h4 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .footer-grid a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .copyright {
+      text-align: center;
+      margin-top: 18px;
+      color: #e6efff;
+      font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .detail-card {
+        flex-direction: column;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .filter-bar input[type="search"] {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -190,24 +369,27 @@
   <header>
     <div class="logo-box">LIK</div>
     <h1>Lapak Ikan Kamad</h1>
-    <p>Pilihan ikan & seafood segar dari nelayan lokal</p>
+    <p>Pilihan ikan & seafood segar dan berkualitas</p>
 
     <nav>
       <a href="#" id="navHome">Beranda</a>
       <a href="#" id="navKategori">Kategori</a>
       <a href="#footerContact" id="navTentang">Tentang</a>
     </nav>
-
+<style>
+  #navHome, #navKategori { display: none; }
+</style>
     <div class="wave" aria-hidden="true">
-      <!-- SVG wave -->
       <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,32 C120,80 240,80 360,48 C480,16 600,0 720,16 C840,32 960,80 1080,64 C1200,48 1320,0 1440,32 L1440 80 L0 80 Z" fill="#f8fbfd"></path>
+        <path
+          d="M0,32 C120,80 240,80 360,48 C480,16 600,0 720,16 C840,32 960,80 1080,64 C1200,48 1320,0 1440,32 L1440 80 L0 80 Z"
+          fill="#f8fbfd"
+        ></path>
       </svg>
     </div>
   </header>
 
   <main>
-    <!-- Filter area (white & elegant). Hidden on detail view -->
     <div id="filterBar" class="filter-bar" aria-hidden="false">
       <input id="searchInput" type="search" placeholder="Cari produk (nama)..." />
       <select id="categorySelect" aria-label="Kategori">
@@ -217,32 +399,43 @@
       </select>
     </div>
 
-    <!-- Products grid -->
     <section id="productsGrid" class="products" aria-live="polite"></section>
 
-    <!-- Detail view (hidden by default). When shown, filterBar & productsGrid hidden -->
     <section id="detailView"></section>
   </main>
 
-  <!-- Floating cart icon (putih) -->
   <button id="cartBtn" aria-label="Keranjang">
-    <span style="font-size:18px; color:var(--primary)">🛒</span>
-    <span id="cartCount" style="margin-left:8px; font-size:13px; background:var(--primary); color:#fff; padding:4px 8px; border-radius:999px;">0</span>
+    <span style="font-size: 18px; color: var(--primary)">🛒</span>
+    <span
+      id="cartCount"
+      style="margin-left: 8px; font-size: 13px; background: var(--primary); color: #fff; padding: 4px 8px; border-radius: 999px;"
+      >0</span
+    >
   </button>
 
-  <!-- Cart modal -->
   <aside id="cartModal" role="dialog" aria-hidden="true">
     <h4>Keranjang Belanja</h4>
     <div id="cartList" class="cart-list">
-      <p style="color:var(--muted)">Keranjang masih kosong.</p>
+      <p style="color: var(--muted)">Keranjang masih kosong.</p>
     </div>
-    <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
-      <button id="checkoutBtn" class="btn" style="background:var(--primary); color:white; border-radius:8px; padding:8px 12px;">Pesan via WA</button>
-      <button id="closeCartBtn" class="btn" style="background:#eef2ff; color:var(--primary); border-radius:8px; padding:8px 12px;">Tutup</button>
+    <div style="margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end;">
+      <button
+        id="checkoutBtn"
+        class="btn"
+        style="background: var(--primary); color: white; border-radius: 8px; padding: 8px 12px;"
+      >
+        Pesan via WA
+      </button>
+      <button
+        id="closeCartBtn"
+        class="btn"
+        style="background: #eef2ff; color: var(--primary); border-radius: 8px; padding: 8px 12px;"
+      >
+        Tutup
+      </button>
     </div>
   </aside>
 
-  <!-- Confirm modal (custom, blue pastel theme) -->
   <div id="confirmModal" aria-hidden="true">
     <div class="confirm-box">
       <p>Apakah yakin menambahkan ke keranjang?</p>
@@ -253,288 +446,512 @@
     </div>
   </div>
 
-  <!-- Footer (detailed) -->
-<footer>
+  <footer id="footerContact">
     <div class="footer-grid">
       <div>
-        <h3>Tentang Kami</h3>
-        <p>Lapak Ikan Kamad menyediakan ikan, udang, kerang, dan lobster segar langsung dari nelayan lokal dengan kualitas terbaik.</p>
+        <h4>Tentang Lapak Ikan Kamad</h4>
+        <p>
+          Kami menyediakan ikan & seafood segar berkualitas langsung dari nelayan lokal.
+          Berkomitmen pada kesegaran, keberlanjutan, dan pelayanan cepat untuk pelanggan
+          rumahan dan usaha kuliner.
+        </p>
       </div>
       <div>
-        <h3>Kontak</h3>
-        <p><i class="fas fa-phone"></i> 0813-1492-1298</p>
-        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/6281314921298" target="_blank">Chat via WhatsApp</a></p>
-        <p><i class="fas fa-envelope"></i> email@lapakikankamad.com</p>
+        <h4>Kontak</h4>
+        <p><span class="fa fa-phone"></span> 0813-1492-1298</p>
+        <p>
+          <span class="fa fa-whatsapp"></span>
+          <a href="https://wa.me/6281314921298" target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a>
+        </p>
+        <p><span class="fa fa-envelope"></span> <a href="mailto:lapakikan@kamad.com">vizenamstrong26@gmail.com</a></p>
       </div>
       <div>
-        <h3>Alamat</h3>
-        <p><i class="fas fa-map-marker-alt"></i> Jl. Contoh Raya No.123, Sidoarjo</p>
-        <a href="https://maps.google.com/?q=-7.4469,112.7171" target="_blank">Lihat di Google Maps</a>
+        <h4>Alamat</h4>
+        <p><span class="fa fa-map-marker"></span> Jl. Aria Wangsakara, Sodong, Kec. Tigaraksa, Kabupaten Tangerang, Banten 15720</p>
+        <a href="https://maps.app.goo.gl/5jkWYmCjq6igatkW9" target="_blank">Lihat di Google Maps</a>
       </div>
     </div>
-    <div class="bottom">
-      © 2025 Lapak Ikan Kamad - Semua Hak Dilindungi
+    <div class="copyright">
+      &copy; 2025 Lapak Ikan Kamad - Semua Hak Dilindungi
     </div>
   </footer>
+
   <script>
-    // ===== data & state =====
     const waNumber = "6281314921298";
-    let cart = []; // { name, price, qty }
-    let pending = null; // { idx, qty } for confirm modal
+    let cart = [];
+    let pending = null;
 
-    // full product list (categorized only 'laut' or 'tawar')
     const products = [
-      { name:"Ikan Mas", category:"tawar", price:22000, stock:50, desc:"Ikan mas segar berkualitas dari kolam.", img:"https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-61265698/_no-brand_ikan-mas-segar-1kg-_full01.jpg" },
-      { name:"Ikan Nila", category:"tawar", price:20000, stock:60, desc:"Ikan nila segar dari tambak, rasa lezat untuk berbagai masakan.", img:"https://images.tokopedia.net/img/cache/700/VqbcmM/2020/8/16/e049a15d-50ec-4ff7-b6cf-cc051658b426.jpg" },
-      { name:"Ikan Lele", category:"tawar", price:18000, stock:100, desc:"Lele segar dengan daging empuk, favorit untuk pecel lele.", img:"https://unair.ac.id/wp-content/uploads/2023/10/17a.png" },
-      { name:"Ikan Gabus", category:"tawar", price:55000, stock:20, desc:"Ikan gabus segar, kaya manfaat dan protein.", img:"https://cdn.rri.co.id/berita/Manokwari/o/1734591648686-460137255_1232585444431624_8616931341207029902_n/hqokmoquf2a9qvk.jpeg" },
-      { name:"Belut", category:"tawar", price:35000, stock:40, desc:"Belut sawah segar, cocok digoreng krispi atau dibuat rica.", img:"https://down-id.img.susercontent.com/file/id-11134207-7r98o-lmejfisw2ww75e" },
-      { name:"Ikan Mujair", category:"tawar", price:22000, stock:70, desc:"Mujair segar dengan rasa khas, enak digoreng atau dibakar.", img:"https://cdn.rri.co.id/berita/Bengkalis/o/1726677300202-WhatsApp_Image_2024-09-18_at_23.23.51/lfarczf05ddfghf.jpeg" },
-
-      { name:"Ikan Kembung", category:"laut", price:25000, stock:48, desc:"Ikan kembung segar langsung dari laut, cocok untuk digoreng atau dibakar.", img:"https://via.placeholder.com/800x500?text=Ikan+Kembung" },
-      { name:"Ikan Tuna", category:"laut", price:85000, stock:12, desc:"Tuna segar dengan daging tebal dan gurih, kaya protein.", img:"https://via.placeholder.com/800x500?text=Ikan+Tuna" },
-      { name:"Ikan Bandeng", category:"laut", price:28000, stock:40, desc:"Bandeng segar, cocok dibuat presto atau panggang.", img:"https://via.placeholder.com/800x500?text=Ikan+Bandeng" },
-      { name:"Ikan Kakap Merah", category:"laut", price:95000, stock:25, desc:"Kakap merah premium, daging tebal dan manis alami.", img:"https://via.placeholder.com/800x500?text=Ikan+Kakap+Merah" },
-      { name:"Ikan Tongkol", category:"laut", price:30000, stock:50, desc:"Tongkol segar, praktis diolah menjadi berbagai menu.", img:"https://via.placeholder.com/800x500?text=Ikan+Tongkol" },
-      { name:"Ikan Ayam-Ayam", category:"laut", price:48000, stock:18, desc:"Ikan ayam-ayam laut, daging empuk dan gurih.", img:"https://via.placeholder.com/800x500?text=Ikan+Ayam-Ayam" },
-      { name:"Ikan Tenggiri", category:"laut", price:90000, stock:8, desc:"Tenggiri segar, daging putih padat, cocok untuk sashimi atau steak ikan.", img:"https://via.placeholder.com/800x500?text=Ikan+Tenggiri" },
-      { name:"Ikan Salmon (import)", category:"laut", price:180000, stock:3, desc:"Salmon import berkualitas, cocok untuk sashimi.", img:"https://via.placeholder.com/800x500?text=Ikan+Salmon" },
-      { name:"Cumi Segar", category:"laut", price:95000, stock:10, desc:"Cumi segar, ideal untuk tumis, bakar, atau goreng tepung.", img:"https://via.placeholder.com/800x500?text=Cumi+Segar" },
-
-      { name:"Udang Vaname", category:"laut", price:120000, stock:20, desc:"Udang vaname segar, ideal untuk goreng tepung atau bakar.", img:"https://via.placeholder.com/800x500?text=Udang+Vaname" },
-      { name:"Udang Windu", category:"laut", price:150000, stock:15, desc:"Udang windu / galah, daging lebih padat dan rasa khas.", img:"https://via.placeholder.com/800x500?text=Udang+Windu" },
-      { name:"Udang Harimau", category:"laut", price:140000, stock:10, desc:"Udang harimau ukuran besar, cocok untuk hidangan spesial.", img:"https://via.placeholder.com/800x500?text=Udang+Harimau" },
-
-      { name:"Kerang Hijau", category:"laut", price:30000, stock:50, desc:"Kerang hijau segar, cocok untuk sop, tumis, atau bakar.", img:"https://via.placeholder.com/800x500?text=Kerang+Hijau" },
-      { name:"Kerang Dara", category:"laut", price:40000, stock:35, desc:"Kerang dara / blood cockle, rasa khas dan mudah diolah.", img:"https://via.placeholder.com/800x500?text=Kerang+Dara" },
-      { name:"Kerang Lala", category:"laut", price:20000, stock:60, desc:"Kerang lala segar, cocok untuk tumisan atau sambal.", img:"https://via.placeholder.com/800x500?text=Kerang+Lala" },
-
-      { name:"Lobster Air Tawar", category:"laut", price:300000, stock:8, desc:"Lobster air tawar segar, cita rasa premium.", img:"https://via.placeholder.com/800x500?text=Lobster+Air+Tawar" },
-      { name:"Lobster Laut", category:"laut", price:400000, stock:5, desc:"Lobster laut segar kualitas premium.", img:"https://via.placeholder.com/800x500?text=Lobster+Laut" }
+      {
+        name: "Ikan Mas",
+        category: "tawar",
+        price: 22000,
+        stock: 50,
+        desc: "Ikan mas segar berkualitas dari kolam.",
+        img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-61265698/_no-brand_ikan-mas-segar-1kg-_full01.jpg",
+      },
+      {
+        name: "Ikan Nila",
+        category: "tawar",
+        price: 20000,
+        stock: 60,
+        desc: "Ikan nila segar dari tambak, rasa lezat untuk berbagai masakan.",
+        img: "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/8/16/e049a15d-50ec-4ff7-b6cf-cc051658b426.jpg",
+      },
+      {
+        name: "Ikan Lele",
+        category: "tawar",
+        price: 18000,
+        stock: 100,
+        desc: "Lele segar dengan daging empuk, favorit untuk pecel lele.",
+        img: "https://unair.ac.id/wp-content/uploads/2023/10/17a.png",
+      },
+      {
+        name: "Ikan Gabus",
+        category: "tawar",
+        price: 55000,
+        stock: 20,
+        desc: "Ikan gabus segar, kaya manfaat dan protein.",
+        img: "https://cdn.rri.co.id/berita/Manokwari/o/1734591648686-460137255_1232585444431624_8616931341207029902_n/hqokmoquf2a9qvk.jpeg",
+      },
+      {
+        name: "Belut",
+        category: "tawar",
+        price: 35000,
+        stock: 40,
+        desc: "Belut sawah segar, cocok digoreng krispi atau dibuat rica.",
+        img: "https://down-id.img.susercontent.com/file/id-11134207-7r98o-lmejfisw2ww75e",
+      },
+      {
+        name: "Ikan Mujair",
+        category: "tawar",
+        price: 22000,
+        stock: 70,
+        desc: "Mujair segar dengan rasa khas, enak digoreng atau dibakar.",
+        img: "https://cdn.rri.co.id/berita/Bengkalis/o/1726677300202-WhatsApp_Image_2024-09-18_at_23.23.51/lfarczf05ddfghf.jpeg",
+      },
+      {
+        name: "Ikan Kembung",
+        category: "laut",
+        price: 25000,
+        stock: 48,
+        desc: "Ikan kembung segar langsung dari laut, cocok untuk digoreng atau dibakar.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Kembung",
+      },
+      {
+        name: "Ikan Tuna",
+        category: "laut",
+        price: 85000,
+        stock: 12,
+        desc: "Tuna segar dengan daging tebal dan gurih, kaya protein.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Tuna",
+      },
+      {
+        name: "Ikan Bandeng",
+        category: "laut",
+        price: 28000,
+        stock: 40,
+        desc: "Bandeng segar, cocok dibuat presto atau panggang.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Bandeng",
+      },
+      {
+        name: "Ikan Kakap Merah",
+        category: "laut",
+        price: 95000,
+        stock: 25,
+        desc: "Kakap merah premium, daging tebal dan manis alami.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Kakap+Merah",
+      },
+      {
+        name: "Ikan Tongkol",
+        category: "laut",
+        price: 30000,
+        stock: 50,
+        desc: "Tongkol segar, praktis diolah menjadi berbagai menu.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Tongkol",
+      },
+      {
+        name: "Ikan Ayam-Ayam",
+        category: "laut",
+        price: 48000,
+        stock: 18,
+        desc: "Ikan ayam-ayam laut, daging empuk dan gurih.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Ayam-Ayam",
+      },
+      {
+        name: "Ikan Tenggiri",
+        category: "laut",
+        price: 90000,
+        stock: 8,
+        desc: "Tenggiri segar, daging putih padat, cocok untuk sashimi atau steak ikan.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Tenggiri",
+      },
+      {
+        name: "Ikan Salmon (import)",
+        category: "laut",
+        price: 180000,
+        stock: 3,
+        desc: "Salmon import berkualitas, cocok untuk sashimi.",
+        img: "https://via.placeholder.com/800x500?text=Ikan+Salmon",
+      },
+      {
+        name: "Cumi Segar",
+        category: "laut",
+        price: 95000,
+        stock: 10,
+        desc: "Cumi segar, ideal untuk tumis, bakar, atau goreng tepung.",
+        img: "https://via.placeholder.com/800x500?text=Cumi+Segar",
+      },
+      {
+        name: "Udang Vaname",
+        category: "laut",
+        price: 120000,
+        stock: 20,
+        desc: "Udang vaname segar, ideal untuk goreng tepung atau bakar.",
+        img: "https://via.placeholder.com/800x500?text=Udang+Vaname",
+      },
+      {
+        name: "Udang Windu",
+        category: "laut",
+        price: 150000,
+        stock: 15,
+        desc: "Udang windu / galah, daging lebih padat dan rasa khas.",
+        img: "https://via.placeholder.com/800x500?text=Udang+Windu",
+      },
+      {
+        name: "Udang Harimau",
+        category: "laut",
+        price: 140000,
+        stock: 10,
+        desc: "Udang harimau ukuran besar, cocok untuk hidangan spesial.",
+        img: "https://via.placeholder.com/800x500?text=Udang+Harimau",
+      },
+      {
+        name: "Kerang Hijau",
+        category: "laut",
+        price: 30000,
+        stock: 50,
+        desc: "Kerang hijau segar, cocok untuk sop, tumis, atau bakar.",
+        img: "https://via.placeholder.com/800x500?text=Kerang+Hijau",
+      },
+      {
+        name: "Kerang Dara",
+        category: "laut",
+        price: 40000,
+        stock: 35,
+        desc: "Kerang dara / blood cockle, rasa khas dan mudah diolah.",
+        img: "https://via.placeholder.com/800x500?text=Kerang+Dara",
+      },
+      {
+        name: "Kerang Lala",
+        category: "laut",
+        price: 20000,
+        stock: 60,
+        desc: "Kerang lala segar, cocok untuk tumisan atau sambal.",
+        img: "https://via.placeholder.com/800x500?text=Kerang+Lala",
+      },
+      {
+        name: "Lobster Air Tawar",
+        category: "laut",
+        price: 300000,
+        stock: 8,
+        desc: "Lobster air tawar segar, cita rasa premium.",
+        img: "https://via.placeholder.com/800x500?text=Lobster+Air+Tawar",
+      },
+      {
+        name: "Lobster Laut",
+        category: "laut",
+        price: 400000,
+        stock: 5,
+        desc: "Lobster laut segar kualitas premium.",
+        img: "https://via.placeholder.com/800x500?text=Lobster+Laut",
+      },
     ];
 
-    // ===== references =====
-    const productsGrid = document.getElementById('productsGrid');
-    const detailView = document.getElementById('detailView');
-    const filterBar = document.getElementById('filterBar');
-    const searchInput = document.getElementById('searchInput');
-    const categorySelect = document.getElementById('categorySelect');
-    const cartBtn = document.getElementById('cartBtn');
-    const cartCountEl = document.getElementById('cartCount');
-    const cartModal = document.getElementById('cartModal');
-    const cartList = document.getElementById('cartList');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const closeCartBtn = document.getElementById('closeCartBtn');
-    const confirmModal = document.getElementById('confirmModal');
-    const confirmYes = document.getElementById('confirmYes');
-    const confirmNo = document.getElementById('confirmNo');
+    const productsGrid = document.getElementById("productsGrid");
+    const detailView = document.getElementById("detailView");
+    const filterBar = document.getElementById("filterBar");
+    const searchInput = document.getElementById("searchInput");
+    const categorySelect = document.getElementById("categorySelect");
+    const cartBtn = document.getElementById("cartBtn");
+    const cartCountEl = document.getElementById("cartCount");
+    const cartModal = document.getElementById("cartModal");
+    const cartList = document.getElementById("cartList");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const closeCartBtn = document.getElementById("closeCartBtn");
+    const confirmModal = document.getElementById("confirmModal");
+    const confirmYes = document.getElementById("confirmYes");
+    const confirmNo = document.getElementById("confirmNo");
 
-    // ===== helpers =====
-    function formatRupiah(n){ return 'Rp ' + Number(n).toLocaleString('id-ID'); }
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[m]); }
+    function formatRupiah(n) {
+      return "Rp " + Number(n).toLocaleString("id-ID");
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, function (m) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        }[m];
+      });
+    }
+    function parseQtyInput(input) {
+      let val = input.trim().replace(",", ".");
+      let num = parseFloat(val);
+      if (isNaN(num) || num <= 0) return null;
+      return num;
+    }
+    function renderProducts() {
+      filterBar.style.display = "";
+      productsGrid.style.display = "grid";
+      detailView.style.display = "none";
+      productsGrid.innerHTML = "";
+      const q = (searchInput.value || "").trim().toLowerCase();
+      const cat = categorySelect.value || "all";
 
-    // ===== render product list =====
-    function renderProducts(){
-      // show filter + product grid, hide detail
-      filterBar.style.display = '';
-      productsGrid.style.display = 'grid';
-      detailView.style.display = 'none';
-      productsGrid.innerHTML = '';
-      const q = (searchInput.value || '').trim().toLowerCase();
-      const cat = categorySelect.value || 'all';
-
-      const list = products.filter(p=>{
+      const filtered = products.filter((p) => {
         const matchQ = !q || p.name.toLowerCase().includes(q);
-        const matchCat = (cat === 'all') || (p.category === cat);
+        const matchCat = cat === "all" || p.category === cat;
         return matchQ && matchCat;
       });
 
-      if(list.length === 0){
-        productsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:${'var(--muted)'}">Tidak ada produk ditemukan.</div>`;
+      if (filtered.length === 0) {
+        productsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:var(--muted)">Tidak ada produk ditemukan.</div>`;
         return;
       }
 
-      list.forEach((p, idx) => {
-        const card = document.createElement('article');
-        card.className = 'card';
+      filtered.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "card";
         card.innerHTML = `
-          <img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.name)}" />
+          <img src="${p.img}" alt="${escapeHtml(p.name)}" />
           <div class="card-body">
             <h3>${escapeHtml(p.name)}</h3>
             <div class="price">${formatRupiah(p.price)}</div>
             <div class="actions">
-              <button class="btn btn-detail" data-idx="${idx}">Lihat Detail</button>
+              <button class="btn btn-detail">Lihat Detail</button>
             </div>
           </div>
         `;
-        // attach handler for Detail (use data-idx)
-        const btn = card.querySelector('.btn-detail');
-        btn.addEventListener('click', ()=> showDetail(products.indexOf(p)));
+        const btn = card.querySelector(".btn-detail");
+        btn.addEventListener("click", () => {
+          const idx = products.indexOf(p);
+          showDetail(idx);
+        });
         productsGrid.appendChild(card);
       });
     }
-
-    // ===== show detail view (hides filters) =====
-    function showDetail(idx){
+    function showDetail(idx) {
       const p = products[idx];
-      // hide filters + grid
-      filterBar.style.display = 'none';
-      productsGrid.style.display = 'none';
-      // fill detail
+      filterBar.style.display = "none";
+      productsGrid.style.display = "none";
       detailView.innerHTML = `
         <div class="detail-card">
           <div class="detail-left">
-            <img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.name)}">
+            <img src="${p.img}" alt="${escapeHtml(p.name)}" />
           </div>
           <div class="detail-right">
             <h2>${escapeHtml(p.name)}</h2>
-            <div class="muted"><strong>Kategori:</strong> ${p.category === 'laut' ? 'Laut' : 'Tawar'}</div>
-            <div style="font-weight:700; font-size:18px; margin-top:6px">${formatRupiah(p.price)} / kg</div>
+            <div class="muted"><strong>Kategori:</strong> ${
+              p.category === "laut" ? "Laut" : "Tawar"
+            }</div>
+            <div style="font-weight:700; font-size:18px; margin-top:6px">${formatRupiah(
+              p.price
+            )} / kg</div>
             <div class="muted">Stok: ${p.stock} kg</div>
             <p style="margin-top:8px">${escapeHtml(p.desc)}</p>
 
-            <label for="qty"><strong>Jumlah Order (kg)</strong></label>
-            <input id="qtyInput" class="qty-input" type="number" min="1" max="${p.stock}" value="1" />
+            <label for="qtyInput"><strong>Jumlah Order (kg)</strong></label>
+            <input id="qtyInput" class="qty-input" type="text" placeholder="Misal: 1.5 atau 2,7" value="1" />
 
             <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
-              <button id="addCartBtn" class="btn" style="background:var(--primary); color:white; border-radius:8px; padding:10px 14px">Tambah ke Keranjang</button>
-              <button id="orderNowBtn" class="btn" style="background:#eef2ff; color:var(--primary); border-radius:8px; padding:10px 14px">Pesan Sekarang via WA</button>
+              <button id="addCartBtn" class="btn" style="background:var(--primary); color:white; border-radius:8px; padding:10px 14px;">Tambah ke Keranjang</button>
+              <button id="orderNowBtn" class="btn" style="background:#eef2ff; color:var(--primary); border-radius:8px; padding:10px 14px;">Pesan Sekarang via WA</button>
               <a href="#" id="backToList" style="margin-left:6px; color:var(--muted); text-decoration:none;">← Kembali ke Produk</a>
             </div>
           </div>
         </div>
       `;
-      // show
-      detailView.style.display = 'block';
-      // attach handlers
-      document.getElementById('backToList').addEventListener('click', (e)=>{ e.preventDefault(); renderProducts(); });
-      document.getElementById('addCartBtn').addEventListener('click', ()=>{
-        const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+      detailView.style.display = "block";
+
+      document.getElementById("backToList").addEventListener("click", (e) => {
+        e.preventDefault();
+        renderProducts();
+      });
+
+      document.getElementById("addCartBtn").addEventListener("click", () => {
+        const rawQty = document.getElementById("qtyInput").value;
+        const qty = parseQtyInput(rawQty);
+        if (qty === null) {
+          alert("Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)");
+          return;
+        }
+        if (qty > p.stock) {
+          alert("Jumlah melebihi stok tersedia.");
+          return;
+        }
         pending = { idx, qty };
         showConfirm();
       });
-      document.getElementById('orderNowBtn').addEventListener('click', ()=>{
-        const qty = parseInt(document.getElementById('qtyInput').value) || 1;
+
+      document.getElementById("orderNowBtn").addEventListener("click", () => {
+        const rawQty = document.getElementById("qtyInput").value;
+        const qty = parseQtyInput(rawQty);
+        if (qty === null) {
+          alert("Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)");
+          return;
+        }
+        if (qty > p.stock) {
+          alert("Jumlah melebihi stok tersedia.");
+          return;
+        }
         orderNow(idx, qty);
       });
-      // scroll up to detail
-      window.scrollTo({ top: 120, behavior:'smooth' });
+      window.scrollTo({ top: 120, behavior: "smooth" });
     }
-
-    // ===== confirm modal =====
-    function showConfirm(){ confirmModal.style.display = 'flex'; confirmModal.setAttribute('aria-hidden','false'); }
-    function hideConfirm(){ confirmModal.style.display = 'none'; confirmModal.setAttribute('aria-hidden','true'); }
-
-    confirmYes.addEventListener('click', ()=>{
-      if(!pending){ hideConfirm(); return; }
+    function showConfirm() {
+      confirmModal.style.display = "flex";
+      confirmModal.setAttribute("aria-hidden", "false");
+    }
+    function hideConfirm() {
+      confirmModal.style.display = "none";
+      confirmModal.setAttribute("aria-hidden", "true");
+    }
+    confirmYes.addEventListener("click", () => {
+      if (!pending) {
+        hideConfirm();
+        return;
+      }
       const item = products[pending.idx];
-      if(pending.qty > item.stock){
-        alert('Jumlah melebihi stok tersedia.');
+      if (pending.qty > item.stock) {
+        alert("Jumlah melebihi stok tersedia.");
         pending = null;
         hideConfirm();
         return;
       }
-      const existing = cart.find(c => c.name === item.name);
-      if(existing){ existing.qty += pending.qty; } else { cart.push({ name:item.name, price:item.price, qty:pending.qty }); }
+      const existing = cart.find((c) => c.name === item.name);
+      if (existing) {
+        existing.qty += pending.qty;
+      } else {
+        cart.push({ name: item.name, price: item.price, qty: pending.qty });
+      }
       updateCartUI();
       pending = null;
       hideConfirm();
-      // show cart modal
       openCart();
     });
-
-    confirmNo.addEventListener('click', ()=>{ pending = null; hideConfirm(); });
-
-    // ===== cart UI =====
-    function updateCartUI(){
-      // update count
-      const totalQty = cart.reduce((s,i)=>s + (i.qty||0), 0);
+    confirmNo.addEventListener("click", () => {
+      pending = null;
+      hideConfirm();
+    });
+    function updateCartUI() {
+      const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
       cartCountEl.textContent = totalQty;
-      // update cart list (if open)
       renderCartList();
     }
-
-    function renderCartList(){
-      cartList.innerHTML = '';
-      if(cart.length === 0){
-        cartList.innerHTML = '<p style="color:var(--muted)">Keranjang masih kosong.</p>';
+    function renderCartList() {
+      cartList.innerHTML = "";
+      if (cart.length === 0) {
+        cartList.innerHTML =
+          '<p style="color:var(--muted)">Keranjang masih kosong.</p>';
         return;
       }
       let totalPrice = 0;
-      cart.forEach((c, idx)=>{
-        totalPrice += c.price * c.qty;
-        const row = document.createElement('div');
-        row.className = 'cart-item';
+      cart.forEach((item, index) => {
+        totalPrice += item.price * item.qty;
+        const row = document.createElement("div");
+        row.className = "cart-item";
         row.innerHTML = `
           <div>
-            <div style="font-weight:700">${escapeHtml(c.name)}</div>
-            <div style="font-size:13px;color:${'var(--muted)'}">Rp ${ (c.price * c.qty).toLocaleString() }</div>
+            <div style="font-weight:700">${escapeHtml(item.name)}</div>
+            <div style="font-size:13px;color:var(--muted)">Rp ${(
+              item.price * item.qty
+            ).toLocaleString()}</div>
           </div>
           <div style="text-align:right">
-            <div style="font-weight:700">${c.qty} kg</div>
-            <button class="remove" data-idx="${idx}">Hapus</button>
+            <div style="font-weight:700">${item.qty} kg</div>
+            <button class="remove" data-idx="${index}">Hapus</button>
           </div>
         `;
         cartList.appendChild(row);
-        row.querySelector('.remove').addEventListener('click', ()=>{ removeCartItem(idx); });
+        row.querySelector(".remove").addEventListener("click", () => {
+          removeCartItem(index);
+        });
       });
-      const tot = document.createElement('div');
-      tot.style.marginTop = '10px';
-      tot.style.fontWeight = '800';
-      tot.textContent = 'Total: ' + formatRupiah(totalPrice);
+      const tot = document.createElement("div");
+      tot.style.marginTop = "10px";
+      tot.style.fontWeight = "800";
+      tot.textContent = "Total: " + formatRupiah(totalPrice);
       cartList.appendChild(tot);
     }
-
-    function removeCartItem(idx){
-      cart.splice(idx,1);
+    function removeCartItem(idx) {
+      cart.splice(idx, 1);
       updateCartUI();
       renderCartList();
     }
-
-    function openCart(){
+    function openCart() {
       renderCartList();
-      cartModal.style.display = 'block';
-      cartModal.setAttribute('aria-hidden','false');
+      cartModal.style.display = "block";
+      cartModal.setAttribute("aria-hidden", "false");
     }
-    function closeCart(){ cartModal.style.display = 'none'; cartModal.setAttribute('aria-hidden','true'); }
-
-    cartBtn.addEventListener('click', ()=>{ if(cartModal.style.display==='block') closeCart(); else openCart(); });
-    closeCartBtn.addEventListener('click', ()=> closeCart());
-
-    // checkout (WA)
-    checkoutBtn.addEventListener('click', ()=>{
-      if(cart.length === 0){ alert('Keranjang kosong.'); return; }
+    function closeCart() {
+      cartModal.style.display = "none";
+      cartModal.setAttribute("aria-hidden", "true");
+    }
+    cartBtn.addEventListener("click", () => {
+      if (cartModal.style.display === "block") {
+        closeCart();
+      } else {
+        openCart();
+      }
+    });
+    closeCartBtn.addEventListener("click", () => closeCart());
+    checkoutBtn.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Keranjang kosong.");
+        return;
+      }
       let msg = `Halo, saya ingin memesan:%0A`;
-      cart.forEach(c => {
-        msg += `- ${c.name} x${c.qty} kg (Rp ${c.price.toLocaleString()} x ${c.qty} = Rp ${(c.price*c.qty).toLocaleString()})%0A`;
+      cart.forEach((c) => {
+        msg += `- ${c.name} x${c.qty} kg (Rp ${c.price.toLocaleString()} x ${c.qty} = Rp ${(
+          c.price * c.qty
+        ).toLocaleString()})%0A`;
       });
       msg += `%0A Mohon info lanjutannya.`;
-      const url = `https://wa.me/${waNumber}?text=${msg}`;
-      window.open(url, '_blank');
-    });
-
-    // direct order from detail
-    function orderNow(idx, qty){
-      const p = products[idx];
-      if(qty <= 0){ alert('Masukkan jumlah minimal 1 kg.'); return; }
-      if(qty > p.stock){ alert('Jumlah melebihi stok tersedia.'); return; }
-      const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(p.price*qty).toLocaleString()}).`;
       const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-      window.open(url,'_blank');
+      window.open(url, "_blank");
+    });
+    function orderNow(idx, qty) {
+      const p = products[idx];
+      if (qty <= 0) {
+        alert("Masukkan jumlah minimal 1 kg.");
+        return;
+      }
+      if (qty > p.stock) {
+        alert("Jumlah melebihi stok tersedia.");
+        return;
+      }
+      const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(
+        p.price * qty
+      ).toLocaleString()}).`;
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+      window.open(url, "_blank");
     }
-
-    // ===== filters & nav =====
-    searchInput.addEventListener('input', renderProducts);
-    categorySelect.addEventListener('change', renderProducts);
-
-    document.getElementById('navHome').addEventListener('click', (e)=>{ e.preventDefault(); renderProducts(); window.scrollTo({top:0,behavior:'smooth'}); });
-    document.getElementById('navKategori').addEventListener('click', (e)=>{ e.preventDefault(); categorySelect.focus(); });
-
-    // Start: initial render
+    document.getElementById("navHome").addEventListener("click", (e) => {
+      e.preventDefault();
+      renderProducts();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    document.getElementById("navKategori").addEventListener("click", (e) => {
+      e.preventDefault();
+      categorySelect.focus();
+    });
+    searchInput.addEventListener("input", renderProducts);
+    categorySelect.addEventListener("change", renderProducts);
     renderProducts();
     updateCartUI();
   </script>
 </body>
 </html>
-
-
