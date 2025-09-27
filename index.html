@@ -4,364 +4,195 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lapak Ikan Kamad</title>
+
+  <!-- Fonts & icons -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
   <style>
-    :root {
-      --primary: #426d9e;
-      --primary-600: #385c87;
-      --bg: #f8fbfd;
-      --muted: #6b7280;
-      --card-shadow: 0 6px 18px rgba(34, 49, 63, 0.06);
-      --radius: 12px;
+    :root{
+      --primary:#426d9e;
+      --primary-600:#385c87;
+      --bg:#f3fbff;
+      --muted:#6b7280;
+      --card-shadow:0 6px 18px rgba(34,49,63,0.06);
+      --radius:12px;
+      --accent:#76c7ff;
     }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background: var(--bg);
-      color: #111827;
-      -webkit-font-smoothing: antialiased;
-    }
-    header {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 34px 16px 64px;
-      position: relative;
-      overflow: hidden;
-    }
-    .logo-box {
-      display: inline-block;
-      background: white;
-      color: var(--primary);
-      padding: 8px 14px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-    header h1 {
-      font-family: "Oswald", sans-serif;
-      margin: 6px 0 4px;
-      font-size: 28px;
-      letter-spacing: 2px;
-    }
-    header p {
-      margin: 0;
-      opacity: 0.95;
-    }
-    nav {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  padding: 6px 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  font-size: 14px;
-  z-index: 10;
-}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Poppins",Arial,sans-serif;background:var(--bg);color:#111827;-webkit-font-smoothing:antialiased;position:relative;}
 
-nav a {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--bg);
-  transition: background 0.2s ease;
-  display: inline-block;
-}
+    /* Header */
+    header{
+      background:linear-gradient(180deg,var(--primary) 0%, #2f5a84 60%);
+      color:white;text-align:center;padding:34px 16px 130px;position:relative;overflow:visible;
+    }
+    .logo-box{display:inline-block;background:rgba(255,255,255,0.08);color:white;padding:8px 14px;border-radius:10px;font-weight:700;font-size:20px;margin-bottom:8px}
+    header h1{font-family:"Oswald",sans-serif;margin:6px 0 4px;font-size:28px;letter-spacing:2px;position:relative;z-index:6}
+    header p{margin:0;opacity:0.95;position:relative;z-index:6}
 
-nav a:hover {
-  background: var(--primary);
-  color: white;
-}
-    .wave {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -1px;
-      height: 80px;
-      pointer-events: none;
-    }
-    .wave svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    main {
-      max-width: 1200px;
-      margin: 24px auto;
-      padding: 0 16px 60px;
-    }
-    .filter-bar {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
-      margin-bottom: 20px;
-    }
-    .filter-bar input[type=search],
-    .filter-bar select {
-      padding: 10px 12px;
-      border: 1px solid #e6e9ef;
-      border-radius: 10px;
-      min-width: 180px;
-      outline: none;
-      font-size: 14px;
-    }
-    .filter-bar input[type=search] {
-      width: 380px;
-      max-width: 70vw;
-    }
-    .products {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.12s;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-    }
-    .card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      display: block;
-    }
-    .card-body {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-    }
-    .card h3 {
-      margin: 0;
+    nav{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.06);border-radius:8px;padding:6px 12px;box-shadow:none;font-size:14px;z-index:8; display: flex; align-items: center;}
+    nav a{color:white;font-weight:600;text-decoration:none;padding:4px 10px;border-radius:999px;display:inline-block;cursor:pointer;user-select:none; transition: transform 0.25s ease, background-color 0.25s ease;}
+    nav a.hidden{display:none}
+
+    /* Animasi klik tombol nav tentang */
+    nav a#navTentang:active {
+      transform: scale(0.85);
+      background-color: rgba(255, 255, 255, 0.4);
       color: var(--primary);
-      font-size: 16px;
     }
-    .card .price {
-      font-weight: 700;
-      color: var(--primary-600);
+    nav a#navTentang:hover {
+      background-color: rgba(255, 255, 255, 0.2);
     }
-    .card .actions {
-      margin-top: auto;
-      display: flex;
-      justify-content: center;
+
+    /* posisi tulisan Tentang di pojok kanan atas (sudah di nav) */
+
+    /* bottom animated wave (header) */
+    .wave-wrap{
+      position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;overflow:hidden;z-index:4;
     }
-    .btn {
-      border: 0;
-      border-radius: 10px;
-      padding: 8px 12px;
-      cursor: pointer;
-      font-weight: 700;
+    .wave-svg{
+      display:block;width:200%;height:120px;transform:translateX(0);will-change:transform;
+      animation: waveMove 8s ease-in-out infinite;
     }
-    .btn-detail {
-      background: var(--primary);
-      color: white;
+    .wave-svg use{fill:#f3fbff}
+    @keyframes waveMove{
+      0%{transform:translateX(0)}
+      50%{transform:translateX(-20%)}
+      100%{transform:translateX(0)}
     }
-    .btn-detail:hover {
-      background: var(--primary-600);
+
+    /* filter box on top of wave */
+    .filter-bar{position:absolute;left:50%;transform:translateX(-50%);bottom:40px;display:flex;gap:12px;align-items:center;justify-content:center;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,251,255,0.95));border-radius:14px;box-shadow:0 8px 30px rgba(34,49,63,0.12);min-width:320px;max-width:92%;z-index:7;border:1px solid rgba(66,109,158,0.06)}
+    .filter-bar input[type=search],.filter-bar select{padding:10px 12px;border:1px solid rgba(66,109,158,0.08);border-radius:10px;min-width:140px;outline:none;font-size:14px;background:transparent}
+    .filter-bar input[type=search]{width:380px;max-width:58vw}
+
+    main{max-width:1200px;margin:24px auto;padding:0 16px 60px;position:relative;z-index:2}
+    .products{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .card{background:white;border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform 0.12s}
+    .card:hover{transform:translateY(-6px)}
+    .card img{width:100%;height:150px;object-fit:cover;display:block}
+    .card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+    .card h3{margin:0;color:var(--primary);font-size:16px}
+    .card .price{font-weight:700;color:var(--primary-600)}
+    .card .actions{margin-top:auto;display:flex;justify-content:center}
+    .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:700}
+    .btn-detail{background:var(--primary);color:white}
+    .btn-detail:hover{background:var(--primary-600)}
+
+    #detailView{display:none;max-width:900px;margin:0 auto}
+    .detail-card{background:white;border-radius:12px;padding:18px;box-shadow:var(--card-shadow);display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+    .detail-left{flex:1 1 360px}
+    .detail-left img{width:100%;border-radius:10px;height:auto;object-fit:cover}
+    .detail-right{flex:1 1 360px;display:flex;flex-direction:column;gap:12px}
+    .detail-right h2{margin:0;color:var(--primary);font-size:22px}
+    .muted{color:var(--muted);font-size:14px}
+    .qty-input{width:140px;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
+
+    /* cart button & modal */
+    #cartBtn{position:fixed;bottom:20px;right:20px;z-index:120;background:white;color:var(--primary);border-radius:999px;padding:12px 14px;box-shadow:0 10px 30px rgba(34,49,63,0.08);border:2px solid rgba(66,109,158,0.08);cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:700}
+    #cartCount{background:var(--primary);color:white;padding:4px 8px;border-radius:999px;font-size:13px}
+    #cartModal{display:none;position:fixed;bottom:80px;right:20px;z-index:110;background:white;width:360px;border-radius:12px;padding:14px;box-shadow:var(--card-shadow)}
+    #cartModal h4{margin:0 0 8px}
+    .cart-list{max-height:260px;overflow:auto;font-size:14px}
+    .cart-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed #f1f5f9}
+    .cart-item .remove{background:#ef4444;color:white;border:0;padding:6px 8px;border-radius:8px;cursor:pointer}
+
+    /* confirm modals */
+    #confirmAdd,#confirmDelete{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:200;align-items:center;justify-content:center}
+    .confirm-box{background:white;padding:20px;border-radius:12px;width:320px;text-align:center;box-shadow:0 10px 30px rgba(34,49,63,0.12)}
+    .confirm-yes{background:var(--primary);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+    .confirm-no{background:#eef2ff;color:var(--primary);border:0;padding:10px 14px;border-radius:8px;cursor:pointer;margin-left:10px}
+
+    /* toast with slide + fade + small vibration */
+    @keyframes toastVibrate {
+      0%, 100% { transform: translateY(0); }
+      20%, 60% { transform: translateY(-3px); }
+      40%, 80% { transform: translateY(3px); }
     }
-    #detailView {
-      display: none;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .detail-card {
-      background: white;
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: var(--card-shadow);
-      display: flex;
-      gap: 18px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-    .detail-left {
-      flex: 1 1 360px;
-    }
-    .detail-left img {
-      width: 100%;
-      border-radius: 10px;
-      height: auto;
-      object-fit: cover;
-    }
-    .detail-right {
-      flex: 1 1 360px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .detail-right h2 {
-      margin: 0;
-      color: var(--primary);
-      font-size: 22px;
-    }
-    .muted {
-      color: var(--muted);
-      font-size: 14px;
-    }
-    .qty-input {
-      width: 140px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #e6e9ef;
-    }
-    #cartBtn {
+    .toast{
       position: fixed;
-      bottom: 20px;
       right: 20px;
-      z-index: 120;
-      background: white;
-      color: var(--primary);
-      border-radius: 999px;
+      bottom: 120px;
+      z-index: 220;
+      min-width: 260px;
+      max-width: 92%;
+      border-radius: 10px;
       padding: 12px 14px;
-      box-shadow: 0 10px 30px rgba(34, 49, 63, 0.08);
-      border: 2px solid rgba(66, 109, 158, 0.08);
-      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(34,49,63,0.12);
       display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-    }
-    #cartCount {
-      background: var(--primary);
-      color: white;
-      padding: 4px 8px;
-      border-radius: 999px;
-      font-size: 13px;
-    }
-    #cartModal {
-      display: none;
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      z-index: 110;
-      background: white;
-      width: 340px;
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: var(--card-shadow);
-    }
-    #cartModal h4 {
-      margin: 0 0 8px;
-    }
-    .cart-list {
-      max-height: 260px;
-      overflow: auto;
-      font-size: 14px;
-    }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
       gap: 10px;
-      align-items: center;
-      padding: 8px 0;
-      border-bottom: 1px dashed #f1f5f9;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 280ms ease, transform 280ms ease;
     }
-    .cart-item .remove {
-      background: #ef4444;
-      color: white;
-      border: 0;
-      padding: 6px 8px;
-      border-radius: 8px;
-      cursor: pointer;
+    .toast.show{
+      opacity: 1;
+      transform: translateY(0);
+      animation: toastVibrate 0.3s ease 1;
     }
-    #confirmModal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 23, 0.45);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
+    .toast.success{
+      background: linear-gradient(90deg,#e6fbff,#d7f0ff);
+      border: 1px solid rgba(66,109,158,0.08);
+      color: #0b3b5a;
     }
-    .confirm-box {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(34, 49, 63, 0.12);
+    .toast.warn{
+      background: linear-gradient(90deg,#fff7e6,#fff3df);
+      border: 1px solid rgba(175,120,0,0.08);
+      color: #6b3b00;
     }
-    .confirm-box p {
-      margin: 0 0 18px;
-      color: #111827;
-      font-weight: 600;
-    }
-    .confirm-yes {
-      background: var(--primary);
-      color: white;
-      border: 0;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 700;
-    }
-    .confirm-no {
-      background: #eef2ff;
-      color: var(--primary);
-      border: 0;
-      padding: 10px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-    footer {
-      background: var(--primary);
+    .toast .title{font-weight:800}
+
+    /* footer with different color */
+    footer{
+      background: #25476a; /* lebih gelap dari header */
       color: white;
       padding: 28px 16px;
       margin-top: 40px;
+      position: relative;
+      overflow: hidden;
     }
-    .footer-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 18px;
+    .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;position: relative; z-index: 2;}
+    .footer-grid h4{margin-top:0;color:#fff}
+    .footer-grid a{color:#fff;text-decoration:underline}
+    .copyright{text-align:center;margin-top:18px;color:#e6efff;font-size:13px;position: relative; z-index: 2;}
+    
+    /* footer wave */
+    .footer-wave-wrap{
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 120px; pointer-events: none;
+      overflow: hidden; z-index: 1;
     }
-    .footer-grid h4 {
-      margin-top: 0;
-      color: #fff;
+    .footer-wave-svg {
+      display: block;
+      width: 200%;
+      height: 120px;
+      transform: translateX(0);
+      will-change: transform;
+      animation: footerWaveMove 12s linear infinite reverse;
     }
-    .footer-grid a {
-      color: #fff;
-      text-decoration: underline;
+    .footer-wave-svg use { fill: #1b3659; }
+    @keyframes footerWaveMove {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-10%); }
+      100% { transform: translateX(0); }
     }
-    .copyright {
-      text-align: center;
-      margin-top: 18px;
-      color: #e6efff;
-      font-size: 13px;
+
+    @media (max-width:900px){
+      .detail-card{flex-direction:column}
+      .footer-grid{grid-template-columns:1fr}
+      .filter-bar{bottom:22px;padding:10px}
+      .filter-bar input[type=search]{width:160px}
+      .products{grid-template-columns:repeat(2,1fr);gap:12px}
+      .card img{height:130px}
+      #cartModal{width:92%;right:4%;}
     }
-    @media (max-width: 900px) {
-      .detail-card {
-        flex-direction: column;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-      .filter-bar input[type="search"] {
-        width: 100%;
-      }
+    @media (max-width:420px){
+      .filter-bar{flex-direction:column;gap:8;bottom:18px}
+      .filter-bar input[type=search]{width:100%}
+      .products{grid-template-columns:repeat(2,1fr)}
     }
   </style>
 </head>
@@ -372,25 +203,12 @@ nav a:hover {
     <p>Pilihan ikan & seafood segar dan berkualitas</p>
 
     <nav>
-      <a href="#" id="navHome">Beranda</a>
-      <a href="#" id="navKategori">Kategori</a>
-      <a href="#footerContact" id="navTentang">Tentang</a>
+      <a href="#" id="navHome" class="hidden">Beranda</a>
+      <a href="#" id="navKategori" class="hidden">Kategori</a>
+      <a href="#footerContact" id="navTentang" role="button" tabindex="0">Tentang</a>
     </nav>
-<style>
-  #navHome, #navKategori { display: none; }
-</style>
-    <div class="wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M0,32 C120,80 240,80 360,48 C480,16 600,0 720,16 C840,32 960,80 1080,64 C1200,48 1320,0 1440,32 L1440 80 L0 80 Z"
-          fill="#f8fbfd"
-        ></path>
-      </svg>
-    </div>
-  </header>
 
-  <main>
-    <div id="filterBar" class="filter-bar" aria-hidden="false">
+    <div class="filter-bar" id="filterBar" aria-hidden="false">
       <input id="searchInput" type="search" placeholder="Cari produk (nama)..." />
       <select id="categorySelect" aria-label="Kategori">
         <option value="all">Semua Kategori</option>
@@ -399,18 +217,26 @@ nav a:hover {
       </select>
     </div>
 
-    <section id="productsGrid" class="products" aria-live="polite"></section>
+    <!-- animated bottom wave -->
+    <div class="wave-wrap" aria-hidden="true">
+      <svg class="wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="wave-path" d="M0,32 C120,80 240,80 360,48 C480,16 600,0 720,16 C840,32 960,80 1080,64 C1200,48 1320,0 1440,32 L1440 120 L0 120 Z"></path>
+        </defs>
+        <use href="#wave-path" x="0"></use>
+        <use href="#wave-path" x="720" opacity="0.95"></use>
+      </svg>
+    </div>
+  </header>
 
+  <main>
+    <section id="productsGrid" class="products" aria-live="polite"></section>
     <section id="detailView"></section>
   </main>
 
   <button id="cartBtn" aria-label="Keranjang">
-    <span style="font-size: 18px; color: var(--primary)">🛒</span>
-    <span
-      id="cartCount"
-      style="margin-left: 8px; font-size: 13px; background: var(--primary); color: #fff; padding: 4px 8px; border-radius: 999px;"
-      >0</span
-    >
+    <span style="font-size:18px; color: var(--primary)">🛒</span>
+    <span id="cartCount" style="margin-left:8px; font-size:13px; background:var(--primary); color:#fff; padding:4px 8px; border-radius:999px;">0</span>
   </button>
 
   <aside id="cartModal" role="dialog" aria-hidden="true">
@@ -418,51 +244,56 @@ nav a:hover {
     <div id="cartList" class="cart-list">
       <p style="color: var(--muted)">Keranjang masih kosong.</p>
     </div>
-    <div style="margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end;">
-      <button
-        id="checkoutBtn"
-        class="btn"
-        style="background: var(--primary); color: white; border-radius: 8px; padding: 8px 12px;"
-      >
-        Pesan via WA
-      </button>
-      <button
-        id="closeCartBtn"
-        class="btn"
-        style="background: #eef2ff; color: var(--primary); border-radius: 8px; padding: 8px 12px;"
-      >
-        Tutup
-      </button>
+    <div class="note-box">
+      <label for="orderNote" style="font-weight:700; font-size:13px;">Catatan untuk penjual</label>
+      <textarea id="orderNote" placeholder="Contoh: minta dibersihkan, pisahkan kepala, atau jam pengantaran..."></textarea>
+    </div>
+    <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
+      <button id="checkoutBtn" class="btn" style="background:var(--primary); color:white; border-radius:8px; padding:8px 12px;">Pesan via WA</button>
+      <button id="closeCartBtn" class="btn" style="background:#eef2ff; color:var(--primary); border-radius:8px; padding:8px 12px;">Tutup</button>
     </div>
   </aside>
 
-  <div id="confirmModal" aria-hidden="true">
+  <div id="confirmAdd" aria-hidden="true">
     <div class="confirm-box">
-      <p>Apakah yakin menambahkan ke keranjang?</p>
-      <div>
-        <button class="confirm-yes" id="confirmYes">Ya</button>
-        <button class="confirm-no" id="confirmNo">Batal</button>
+      <p style="font-weight:700;">Apakah yakin menambahkan ke keranjang?</p>
+      <div style="margin-top:12px; display:flex; justify-content:center; gap:10px;">
+        <button id="confirmAddYes" class="confirm-yes">Ya</button>
+        <button id="confirmAddNo" class="confirm-no">Batal</button>
       </div>
     </div>
   </div>
+
+  <div id="confirmDelete" aria-hidden="true">
+    <div class="confirm-box">
+      <p style="font-weight:700;">Yakin akan menghapus produk dari keranjang?</p>
+      <div style="margin-top:12px; display:flex; justify-content:center; gap:10px;">
+        <button id="confirmDeleteYes" class="confirm-yes">Hapus</button>
+        <button id="confirmDeleteNo" class="confirm-no">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer wave -->
+  <div class="footer-wave-wrap" aria-hidden="true">
+    <svg class="footer-wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <use href="#wave-path"></use>
+      <use href="#wave-path" x="720" opacity="0.9"></use>
+    </svg>
+  </div>
+
+  <!-- toast elements created dynamically by JS -->
 
   <footer id="footerContact">
     <div class="footer-grid">
       <div>
         <h4>Tentang Lapak Ikan Kamad</h4>
-        <p>
-          Kami menyediakan ikan & seafood segar berkualitas langsung dari nelayan lokal.
-          Berkomitmen pada kesegaran, keberlanjutan, dan pelayanan cepat untuk pelanggan
-          rumahan dan usaha kuliner.
-        </p>
+        <p>Kami menyediakan ikan & seafood segar berkualitas langsung dari nelayan lokal. Berkomitmen pada kesegaran, keberlanjutan, dan pelayanan cepat untuk pelanggan rumahan dan usaha kuliner.</p>
       </div>
       <div>
         <h4>Kontak</h4>
         <p><span class="fa fa-phone"></span> 0813-1492-1298</p>
-        <p>
-          <span class="fa fa-whatsapp"></span>
-          <a href="https://wa.me/6281314921298" target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a>
-        </p>
+        <p><span class="fa fa-whatsapp"></span> <a href="https://wa.me/6281314921298" target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a></p>
         <p><span class="fa fa-envelope"></span> <a href="mailto:lapakikan@kamad.com">vizenamstrong26@gmail.com</a></p>
       </div>
       <div>
@@ -471,249 +302,92 @@ nav a:hover {
         <a href="https://maps.app.goo.gl/5jkWYmCjq6igatkW9" target="_blank">Lihat di Google Maps</a>
       </div>
     </div>
-    <div class="copyright">
-      &copy; 2025 Lapak Ikan Kamad - Semua Hak Dilindungi
-    </div>
+    <div class="copyright">&copy; 2025 Lapak Ikan Kamad - Semua Hak Dilindungi</div>
   </footer>
 
   <script>
     const waNumber = "6281314921298";
     let cart = [];
-    let pending = null;
+    let pendingAdd = null; // {idx, qty}
+    let pendingDeleteIdx = null;
 
     const products = [
-      {
-        name: "Ikan Mas",
-        category: "tawar",
-        price: 22000,
-        stock: 50,
-        desc: "Ikan mas segar berkualitas dari kolam.",
-        img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-61265698/_no-brand_ikan-mas-segar-1kg-_full01.jpg",
-      },
-      {
-        name: "Ikan Nila",
-        category: "tawar",
-        price: 20000,
-        stock: 60,
-        desc: "Ikan nila segar dari tambak, rasa lezat untuk berbagai masakan.",
-        img: "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/8/16/e049a15d-50ec-4ff7-b6cf-cc051658b426.jpg",
-      },
-      {
-        name: "Ikan Lele",
-        category: "tawar",
-        price: 18000,
-        stock: 100,
-        desc: "Lele segar dengan daging empuk, favorit untuk pecel lele.",
-        img: "https://unair.ac.id/wp-content/uploads/2023/10/17a.png",
-      },
-      {
-        name: "Ikan Gabus",
-        category: "tawar",
-        price: 55000,
-        stock: 20,
-        desc: "Ikan gabus segar, kaya manfaat dan protein.",
-        img: "https://cdn.rri.co.id/berita/Manokwari/o/1734591648686-460137255_1232585444431624_8616931341207029902_n/hqokmoquf2a9qvk.jpeg",
-      },
-      {
-        name: "Belut",
-        category: "tawar",
-        price: 35000,
-        stock: 40,
-        desc: "Belut sawah segar, cocok digoreng krispi atau dibuat rica.",
-        img: "https://down-id.img.susercontent.com/file/id-11134207-7r98o-lmejfisw2ww75e",
-      },
-      {
-        name: "Ikan Mujair",
-        category: "tawar",
-        price: 22000,
-        stock: 70,
-        desc: "Mujair segar dengan rasa khas, enak digoreng atau dibakar.",
-        img: "https://cdn.rri.co.id/berita/Bengkalis/o/1726677300202-WhatsApp_Image_2024-09-18_at_23.23.51/lfarczf05ddfghf.jpeg",
-      },
-      {
-        name: "Ikan Kembung",
-        category: "laut",
-        price: 25000,
-        stock: 48,
-        desc: "Ikan kembung segar langsung dari laut, cocok untuk digoreng atau dibakar.",
-        img: "https://asset.kompas.com/crops/kNQ_HEY8ew08T9-hv5pgLYcD_4k=/61x0:906x563/375x240/data/photo/2021/01/21/600942b282255.jpg",
-      },
-      {
-        name: "Ikan Tuna",
-        category: "laut",
-        price: 85000,
-        stock: 12,
-        desc: "Tuna segar dengan daging tebal dan gurih, kaya protein.",
-        img: "https://fishinfojatim.net/assets/uploads/produk_photo/1675915212375-1.jpg",
-      },
-      {
-        name: "Ikan Bandeng",
-        category: "laut",
-        price: 28000,
-        stock: 40,
-        desc: "Bandeng segar, cocok dibuat presto atau panggang.",
-        img: "https://cdn.digitaldesa.com/uploads/marketplace/products/cd90bb1f4b1c8c4777f7a8603431917e.jpg",
-      },
-      {
-        name: "Ikan Kakap Merah",
-        category: "laut",
-        price: 95000,
-        stock: 25,
-        desc: "Kakap merah premium, daging tebal dan manis alami.",
-        img: "https://asset-a.grid.id/crop/0x0:0x0/x/photo/2024/01/10/ikan-kakap-merah-dan-putih-1-20240110042917.jpg",
-      },
-      {
-        name: "Ikan Tongkol",
-        category: "laut",
-        price: 30000,
-        stock: 50,
-        desc: "Tongkol segar, praktis diolah menjadi berbagai menu.",
-        img: "https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p3/31/2024/02/07/1707274188227-4148169123.jpg",
-      },
-      {
-        name: "Ikan Ayam-Ayam",
-        category: "laut",
-        price: 48000,
-        stock: 18,
-        desc: "Ikan ayam-ayam laut, daging empuk dan gurih.",
-        img: "https://image.indonetwork.co.id/f-webp/products/thumbs/600x600/2012/10/09/781e24e3f57376ec2fe3c7534cad0780.jpg",
-      },
-      {
-        name: "Ikan Tenggiri",
-        category: "laut",
-        price: 90000,
-        stock: 8,
-        desc: "Tenggiri segar, daging putih padat, cocok untuk sashimi atau steak ikan.",
-        img: "https://down-id.img.susercontent.com/file/id-11134207-7r992-lya2z5i771god9",
-      },
-      {
-        name: "Ikan Salmon",
-        category: "laut",
-        price: 180000,
-        stock: 3,
-        desc: "Salmon import berkualitas, cocok untuk sashimi.",
-        img: "https://asset.kompas.com/crops/1ZpbbEXk78_HsJWTG0Cf025voP4=/0x0:1000x667/1200x800/data/photo/2020/06/25/5ef414adef8ef.jpg",
-      },
-      {
-        name: "Cumi Segar",
-        category: "laut",
-        price: 95000,
-        stock: 10,
-        desc: "Cumi segar, ideal untuk tumis, bakar, atau goreng tepung.",
-        img: "https://down-id.img.susercontent.com/file/id-11134201-7qul3-lh8yg4gnuywz23",
-      },
-      {
-        name: "Udang Vaname",
-        category: "laut",
-        price: 120000,
-        stock: 20,
-        desc: "Udang vaname segar, ideal untuk goreng tepung atau bakar.",
-        img: "https://www.beritadaerah.co.id/wp-content/uploads/2021/03/Udang-Vaname-Foto-KKP.jpg",
-      },
-      {
-        name: "Udang Windu",
-        category: "laut",
-        price: 150000,
-        stock: 15,
-        desc: "Udang windu / galah, daging lebih padat dan rasa khas.",
-        img: "https://media.istockphoto.com/id/1470165913/id/foto/udang-windu-segar-di-pasar-ikan.jpg?s=170667a&w=0&k=20&c=PQXoRXYP3tnMWpkCKoihIfoCX81KZUpGcxA3tf_mX2A=",
-      },
-      {
-        name: "Udang Harimau",
-        category: "laut",
-        price: 140000,
-        stock: 10,
-        desc: "Udang harimau ukuran besar, cocok untuk hidangan spesial.",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPOL80Q0sCMCwNRtZweBV9BcnFD366PDwkQ&s",
-      },
-      {
-        name: "Kerang Hijau",
-        category: "laut",
-        price: 30000,
-        stock: 50,
-        desc: "Kerang hijau segar, cocok untuk sop, tumis, atau bakar.",
-        img: "https://pasarbadung.com/wp-content/uploads/2025/05/21970489-93f7-40f7-9cfb-fd51c78d8d34.jpg",
-      },
-      {
-        name: "Kerang Dara",
-        category: "laut",
-        price: 40000,
-        stock: 35,
-        desc: "Kerang dara / blood cockle, rasa khas dan mudah diolah.",
-        img: "https://cdn.grid.id/crop/0x0:0x0/700x465/photo/2023/01/13/tips-memilih-kerang-yang-segarj-20230113012617.jpg",
-      },
-      {
-        name: "Kerang Lala",
-        category: "laut",
-        price: 20000,
-        stock: 60,
-        desc: "Kerang lala segar, cocok untuk tumisan atau sambal.",
-        img: "https://down-id.img.susercontent.com/file/0ba55f6bcda6bf843f6538e8e059cf83_tn.webp",
-      },
-      {
-        name: "Lobster Air Tawar",
-        category: "laut",
-        price: 300000,
-        stock: 8,
-        desc: "Lobster air tawar segar, cita rasa premium.",
-        img: "https://down-id.img.susercontent.com/file/id-11134207-23030-bk1m8ibuqsov4d",
-      },
-      {
-        name: "Lobster Laut",
-        category: "laut",
-        price: 400000,
-        stock: 5,
-        desc: "Lobster laut segar kualitas premium.",
-        img: "https://cf.shopee.co.id/file/f91e96d0f05d8d3e7127cefd89cc4747",
-      },
+      { name: "Ikan Mas", category: "tawar", price: 22000, stock: 50, desc: "Ikan mas segar berkualitas dari kolam.", img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-61265698/_no-brand_ikan-mas-segar-1kg-_full01.jpg" },
+      { name: "Ikan Nila", category: "tawar", price: 20000, stock: 60, desc: "Ikan nila segar dari tambak, rasa lezat untuk berbagai masakan.", img: "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/8/16/e049a15d-50ec-4ff7-b6cf-cc051658b426.jpg" },
+      { name: "Ikan Lele", category: "tawar", price: 18000, stock: 100, desc: "Lele segar dengan daging empuk, favorit untuk pecel lele.", img: "https://unair.ac.id/wp-content/uploads/2023/10/17a.png" },
+      { name: "Ikan Gabus", category: "tawar", price: 55000, stock: 20, desc: "Ikan gabus segar, kaya manfaat dan protein.", img: "https://cdn.rri.co.id/berita/Manokwari/o/1734591648686-460137255_1232585444431624_8616931341207029902_n/hqokmoquf2a9qvk.jpeg" },
+      { name: "Belut", category: "tawar", price: 35000, stock: 40, desc: "Belut sawah segar, cocok digoreng krispi atau dibuat rica.", img: "https://down-id.img.susercontent.com/file/id-11134207-7r98o-lmejfisw2ww75e" },
+      { name: "Ikan Mujair", category: "tawar", price: 22000, stock: 70, desc: "Mujair segar dengan rasa khas, enak digoreng atau dibakar.", img: "https://cdn.rri.co.id/berita/Bengkalis/o/1726677300202-WhatsApp_Image_2024-09-18_at_23.23.51/lfarczf05ddfghf.jpeg" },
+      { name: "Ikan Kembung", category: "laut", price: 25000, stock: 48, desc: "Ikan kembung segar langsung dari laut, cocok untuk digoreng atau dibakar.", img: "https://asset.kompas.com/crops/kNQ_HEY8ew08T9-hv5pgLYcD_4k=/61x0:906x563/375x240/data/photo/2021/01/21/600942b282255.jpg" },
+      { name: "Ikan Tuna", category: "laut", price: 85000, stock: 12, desc: "Tuna segar dengan daging tebal dan gurih, kaya protein.", img: "https://fishinfojatim.net/assets/uploads/produk_photo/1675915212375-1.jpg" },
+      { name: "Ikan Bandeng", category: "laut", price: 28000, stock: 40, desc: "Bandeng segar, cocok dibuat presto atau panggang.", img: "https://cdn.digitaldesa.com/uploads/marketplace/products/cd90bb1f4b1c8c4777f7a8603431917e.jpg" },
+      { name: "Ikan Kakap Merah", category: "laut", price: 95000, stock: 25, desc: "Kakap merah premium, daging tebal dan manis alami.", img: "https://asset-a.grid.id/crop/0x0:0x0/x/photo/2024/01/10/ikan-kakap-merah-dan-putih-1-20240110042917.jpg" },
+      { name: "Ikan Tongkol", category: "laut", price: 30000, stock: 50, desc: "Tongkol segar, praktis diolah menjadi berbagai menu.", img: "https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p3/31/2024/02/07/1707274188227-4148169123.jpg" },
+      { name: "Ikan Ayam-Ayam", category: "laut", price: 48000, stock: 18, desc: "Ikan ayam-ayam laut, daging empuk dan gurih.", img: "https://image.indonetwork.co.id/f-webp/products/thumbs/600x600/2012/10/09/781e24e3f57376ec2fe3c7534cad0780.jpg" },
+      { name: "Ikan Tenggiri", category: "laut", price: 90000, stock: 8, desc: "Tenggiri segar, daging putih padat, cocok untuk sashimi atau steak ikan.", img: "https://down-id.img.susercontent.com/file/id-11134207-7r992-lya2z5i771god9" },
+      { name: "Ikan Salmon", category: "laut", price: 180000, stock: 3, desc: "Salmon import berkualitas, cocok untuk sashimi.", img: "https://asset.kompas.com/crops/1ZpbbEXk78_HsJWTG0Cf025voP4=/0x0:1000x667/1200x800/data/photo/2020/06/25/5ef414adef8ef.jpg" },
+      { name: "Cumi Segar", category: "laut", price: 95000, stock: 10, desc: "Cumi segar, ideal untuk tumis, bakar, atau goreng tepung.", img: "https://down-id.img.susercontent.com/file/id-11134201-7qul3-lh8yg4gnuywz23" },
+      { name: "Udang Vaname", category: "laut", price: 120000, stock: 20, desc: "Udang vaname segar, ideal untuk goreng tepung atau bakar.", img: "https://www.beritadaerah.co.id/wp-content/uploads/2021/03/Udang-Vaname-Foto-KKP.jpg" },
+      { name: "Udang Windu", category: "laut", price: 150000, stock: 15, desc: "Udang windu / galah, daging lebih padat dan rasa khas.", img: "https://media.istockphoto.com/id/1470165913/id/foto/udang-windu-segar-di-pasar-ikan.jpg?s=170667a&w=0&k=20&c=PQXoRXYP3tnMWpkCKoihIfoCX81KZUpGcxA3tf_mX2A=" },
+      { name: "Udang Harimau", category: "laut", price: 140000, stock: 10, desc: "Udang harimau ukuran besar, cocok untuk hidangan spesial.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPOL80Q0sCMCwNRtZweBV9BcnFD366PDwkQ&s" },
+      { name: "Kerang Hijau", category: "laut", price: 30000, stock: 50, desc: "Kerang hijau segar, cocok untuk sop, tumis, atau bakar.", img: "https://pasarbadung.com/wp-content/uploads/2025/05/21970489-93f7-40f7-9cfb-fd51c78d8d34.jpg" },
+      { name: "Kerang Dara", category: "laut", price: 40000, stock: 35, desc: "Kerang dara / blood cockle, rasa khas dan mudah diolah.", img: "https://cdn.grid.id/crop/0x0:0x0/700x465/photo/2023/01/13/tips-memilih-kerang-yang-segarj-20230113012617.jpg" },
+      { name: "Kerang Lala", category: "laut", price: 20000, stock: 60, desc: "Kerang lala segar, cocok untuk tumisan atau sambal.", img: "https://down-id.img.susercontent.com/file/0ba55f6bcda6bf843f6538e8e059cf83_tn.webp" },
+      { name: "Lobster Air Tawar", category: "laut", price: 300000, stock: 8, desc: "Lobster air tawar segar, cita rasa premium.", img: "https://down-id.img.susercontent.com/file/id-11134207-23030-bk1m8ibuqsov4d" },
+      { name: "Lobster Laut", category: "laut", price: 400000, stock: 5, desc: "Lobster laut segar kualitas premium.", img: "https://cf.shopee.co.id/file/f91e96d0f05d8d3e7127cefd89cc4747" }
     ];
 
-    const productsGrid = document.getElementById("productsGrid");
-    const detailView = document.getElementById("detailView");
-    const filterBar = document.getElementById("filterBar");
-    const searchInput = document.getElementById("searchInput");
-    const categorySelect = document.getElementById("categorySelect");
-    const cartBtn = document.getElementById("cartBtn");
-    const cartCountEl = document.getElementById("cartCount");
-    const cartModal = document.getElementById("cartModal");
-    const cartList = document.getElementById("cartList");
-    const checkoutBtn = document.getElementById("checkoutBtn");
-    const closeCartBtn = document.getElementById("closeCartBtn");
-    const confirmModal = document.getElementById("confirmModal");
-    const confirmYes = document.getElementById("confirmYes");
-    const confirmNo = document.getElementById("confirmNo");
+    // DOM refs
+    const productsGrid = document.getElementById('productsGrid');
+    const detailView = document.getElementById('detailView');
+    const filterBar = document.getElementById('filterBar');
+    const searchInput = document.getElementById('searchInput');
+    const categorySelect = document.getElementById('categorySelect');
+    const cartBtn = document.getElementById('cartBtn');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartModal = document.getElementById('cartModal');
+    const cartList = document.getElementById('cartList');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    const closeCartBtn = document.getElementById('closeCartBtn');
+    const confirmAdd = document.getElementById('confirmAdd');
+    const confirmAddYes = document.getElementById('confirmAddYes');
+    const confirmAddNo = document.getElementById('confirmAddNo');
+    const confirmDelete = document.getElementById('confirmDelete');
+    const confirmDeleteYes = document.getElementById('confirmDeleteYes');
+    const confirmDeleteNo = document.getElementById('confirmDeleteNo');
+    const orderNoteEl = document.getElementById('orderNote');
+    const navTentang = document.getElementById('navTentang');
+    const footerContact = document.getElementById('footerContact');
 
-    function formatRupiah(n) {
-      return "Rp " + Number(n).toLocaleString("id-ID");
+    // Helpers
+    function formatRupiah(n){ return 'Rp ' + Number(n).toLocaleString('id-ID'); }
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"'"}[m])); }
+    function parseQtyInput(input){ let val = input.trim().replace(',', '.'); let num = parseFloat(val); if (isNaN(num) || num <= 0) return null; return num; }
+
+    // TOAST helper (create floating toasts with slide+fade+vibrate animation)
+    function showToast(message,type='success',duration=3200){
+      const t = document.createElement('div');
+      t.className = 'toast ' + (type === 'warn' ? 'warn' : 'success');
+      t.innerHTML = `<div style="display:flex;flex-direction:column"><div class="title">${type==='warn'?'Perhatian':'Sukses'}</div><div style="font-size:13px;margin-top:6px">${escapeHtml(message)}</div></div>`;
+      document.body.appendChild(t);
+      // Show with animation
+      requestAnimationFrame(() => t.classList.add('show'));
+      setTimeout(() => t.classList.remove('show'), duration - 300);
+      setTimeout(() => { try { document.body.removeChild(t); } catch(e){} }, duration);
     }
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, function (m) {
-        return {
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#39;",
-        }[m];
-      });
-    }
-    function parseQtyInput(input) {
-      let val = input.trim().replace(",", ".");
-      let num = parseFloat(val);
-      if (isNaN(num) || num <= 0) return null;
-      return num;
-    }
-    function renderProducts() {
-      filterBar.style.display = "";
-      productsGrid.style.display = "grid";
-      detailView.style.display = "none";
-      productsGrid.innerHTML = "";
-      const q = (searchInput.value || "").trim().toLowerCase();
-      const cat = categorySelect.value || "all";
+
+    // Render product grid (same as before, omitted here for brevity)
+    function renderProducts(){
+      filterBar.style.display = '';
+      productsGrid.style.display = 'grid';
+      detailView.style.display = 'none';
+      productsGrid.innerHTML = '';
+      const q = (searchInput.value || '').trim().toLowerCase();
+      const cat = categorySelect.value || 'all';
 
       const filtered = products.filter((p) => {
         const matchQ = !q || p.name.toLowerCase().includes(q);
-        const matchCat = cat === "all" || p.category === cat;
+        const matchCat = cat === 'all' || p.category === cat;
         return matchQ && matchCat;
       });
 
@@ -723,8 +397,8 @@ nav a:hover {
       }
 
       filtered.forEach((p) => {
-        const card = document.createElement("article");
-        card.className = "card";
+        const card = document.createElement('article');
+        card.className = 'card';
         card.innerHTML = `
           <img src="${p.img}" alt="${escapeHtml(p.name)}" />
           <div class="card-body">
@@ -735,18 +409,20 @@ nav a:hover {
             </div>
           </div>
         `;
-        const btn = card.querySelector(".btn-detail");
-        btn.addEventListener("click", () => {
+        const btn = card.querySelector('.btn-detail');
+        btn.addEventListener('click', () => {
           const idx = products.indexOf(p);
           showDetail(idx);
         });
         productsGrid.appendChild(card);
       });
     }
-    function showDetail(idx) {
+
+    // Show detail view (same as before, omitted for brevity)
+    function showDetail(idx){
       const p = products[idx];
-      filterBar.style.display = "none";
-      productsGrid.style.display = "none";
+      filterBar.style.display = 'none';
+      productsGrid.style.display = 'none';
       detailView.innerHTML = `
         <div class="detail-card">
           <div class="detail-left">
@@ -754,12 +430,8 @@ nav a:hover {
           </div>
           <div class="detail-right">
             <h2>${escapeHtml(p.name)}</h2>
-            <div class="muted"><strong>Kategori:</strong> ${
-              p.category === "laut" ? "Laut" : "Tawar"
-            }</div>
-            <div style="font-weight:700; font-size:18px; margin-top:6px">${formatRupiah(
-              p.price
-            )} / kg</div>
+            <div class="muted"><strong>Kategori:</strong> ${p.category === 'laut' ? 'Laut' : 'Tawar'}</div>
+            <div style="font-weight:700; font-size:18px; margin-top:6px">${formatRupiah(p.price)} / kg</div>
             <div class="muted">Stok: ${p.stock} kg</div>
             <p style="margin-top:8px">${escapeHtml(p.desc)}</p>
 
@@ -774,101 +446,84 @@ nav a:hover {
           </div>
         </div>
       `;
-      detailView.style.display = "block";
+      detailView.style.display = 'block';
 
-      document.getElementById("backToList").addEventListener("click", (e) => {
+      document.getElementById("backToList").addEventListener('click', (e) => {
         e.preventDefault();
         renderProducts();
       });
 
-      document.getElementById("addCartBtn").addEventListener("click", () => {
+      document.getElementById("addCartBtn").addEventListener('click', () => {
         const rawQty = document.getElementById("qtyInput").value;
         const qty = parseQtyInput(rawQty);
-        if (qty === null) {
-          alert("Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)");
-          return;
-        }
-        if (qty > p.stock) {
-          alert("Jumlah melebihi stok tersedia.");
-          return;
-        }
-        pending = { idx, qty };
-        showConfirm();
+        if (qty === null) { showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)','warn'); return; }
+        if (qty > p.stock) { showToast('Jumlah melebihi stok tersedia','warn'); return; }
+        pendingAdd = { idx, qty };
+        showConfirmAdd();
       });
 
-      document.getElementById("orderNowBtn").addEventListener("click", () => {
+      document.getElementById("orderNowBtn").addEventListener('click', () => {
         const rawQty = document.getElementById("qtyInput").value;
         const qty = parseQtyInput(rawQty);
-        if (qty === null) {
-          alert("Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)");
-          return;
-        }
-        if (qty > p.stock) {
-          alert("Jumlah melebihi stok tersedia.");
-          return;
-        }
+        if (qty === null) { showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)','warn'); return; }
+        if (qty > p.stock) { showToast('Jumlah melebihi stok tersedia','warn'); return; }
         orderNow(idx, qty);
       });
+
       window.scrollTo({ top: 120, behavior: "smooth" });
     }
-    function showConfirm() {
-      confirmModal.style.display = "flex";
-      confirmModal.setAttribute("aria-hidden", "false");
-    }
-    function hideConfirm() {
-      confirmModal.style.display = "none";
-      confirmModal.setAttribute("aria-hidden", "true");
-    }
-    confirmYes.addEventListener("click", () => {
-      if (!pending) {
-        hideConfirm();
-        return;
-      }
-      const item = products[pending.idx];
-      if (pending.qty > item.stock) {
-        alert("Jumlah melebihi stok tersedia.");
-        pending = null;
-        hideConfirm();
-        return;
-      }
-      const existing = cart.find((c) => c.name === item.name);
-      if (existing) {
-        existing.qty += pending.qty;
-      } else {
-        cart.push({ name: item.name, price: item.price, qty: pending.qty });
-      }
+
+    // Confirm add handlers
+    function showConfirmAdd(){ confirmAdd.style.display = 'flex'; confirmAdd.setAttribute('aria-hidden','false'); }
+    function hideConfirmAdd(){ confirmAdd.style.display = 'none'; confirmAdd.setAttribute('aria-hidden','true'); }
+    confirmAddYes.addEventListener('click', () => {
+      if (!pendingAdd){ hideConfirmAdd(); return; }
+      const item = products[pendingAdd.idx];
+      if (pendingAdd.qty > item.stock) { showToast('Jumlah melebihi stok tersedia','warn'); pendingAdd = null; hideConfirmAdd(); return; }
+      const existing = cart.find(c => c.name === item.name);
+      if (existing) existing.qty += pendingAdd.qty; else cart.push({ name: item.name, price: item.price, qty: pendingAdd.qty });
       updateCartUI();
-      pending = null;
-      hideConfirm();
+      pendingAdd = null;
+      hideConfirmAdd();
+      showToast('Berhasil ditambahkan ke keranjang','success');
       openCart();
     });
-    confirmNo.addEventListener("click", () => {
-      pending = null;
-      hideConfirm();
+    confirmAddNo.addEventListener('click', ()=>{ pendingAdd = null; hideConfirmAdd(); });
+
+    // Confirm delete handlers
+    function showConfirmDelete(idx){ pendingDeleteIdx = idx; confirmDelete.style.display = 'flex'; confirmDelete.setAttribute('aria-hidden','false'); }
+    function hideConfirmDelete(){ pendingDeleteIdx = null; confirmDelete.style.display = 'none'; confirmDelete.setAttribute('aria-hidden','true'); }
+    confirmDeleteYes.addEventListener('click', () => {
+      if (pendingDeleteIdx === null) { hideConfirmDelete(); return; }
+      cart.splice(pendingDeleteIdx, 1);
+      updateCartUI();
+      renderCartList();
+      hideConfirmDelete();
+      showToast('Produk dihapus dari keranjang','warn');
     });
-    function updateCartUI() {
+    confirmDeleteNo.addEventListener('click', ()=> hideConfirmDelete());
+
+    function updateCartUI(){
       const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
       cartCountEl.textContent = totalQty;
       renderCartList();
     }
-    function renderCartList() {
-      cartList.innerHTML = "";
+
+    function renderCartList(){
+      cartList.innerHTML = '';
       if (cart.length === 0) {
-        cartList.innerHTML =
-          '<p style="color:var(--muted)">Keranjang masih kosong.</p>';
+        cartList.innerHTML = '<p style="color:var(--muted)">Keranjang masih kosong.</p>';
         return;
       }
       let totalPrice = 0;
       cart.forEach((item, index) => {
         totalPrice += item.price * item.qty;
-        const row = document.createElement("div");
-        row.className = "cart-item";
+        const row = document.createElement('div');
+        row.className = 'cart-item';
         row.innerHTML = `
           <div>
             <div style="font-weight:700">${escapeHtml(item.name)}</div>
-            <div style="font-size:13px;color:var(--muted)">Rp ${(
-              item.price * item.qty
-            ).toLocaleString()}</div>
+            <div style="font-size:13px;color:var(--muted)">Rp ${(item.price * item.qty).toLocaleString()}</div>
           </div>
           <div style="text-align:right">
             <div style="font-weight:700">${item.qty} kg</div>
@@ -876,84 +531,107 @@ nav a:hover {
           </div>
         `;
         cartList.appendChild(row);
-        row.querySelector(".remove").addEventListener("click", () => {
-          removeCartItem(index);
-        });
+        row.querySelector('.remove').addEventListener('click', () => { showConfirmDelete(index); });
       });
-      const tot = document.createElement("div");
-      tot.style.marginTop = "10px";
-      tot.style.fontWeight = "800";
-      tot.textContent = "Total: " + formatRupiah(totalPrice);
+      const tot = document.createElement('div');
+      tot.style.marginTop = '10px';
+      tot.style.fontWeight = '800';
+      tot.textContent = 'Total: ' + formatRupiah(totalPrice);
       cartList.appendChild(tot);
     }
-    function removeCartItem(idx) {
-      cart.splice(idx, 1);
-      updateCartUI();
-      renderCartList();
-    }
-    function openCart() {
-      renderCartList();
-      cartModal.style.display = "block";
-      cartModal.setAttribute("aria-hidden", "false");
-    }
-    function closeCart() {
-      cartModal.style.display = "none";
-      cartModal.setAttribute("aria-hidden", "true");
-    }
-    cartBtn.addEventListener("click", () => {
-      if (cartModal.style.display === "block") {
-        closeCart();
-      } else {
-        openCart();
-      }
-    });
-    closeCartBtn.addEventListener("click", () => closeCart());
-    checkoutBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
-        alert("Keranjang kosong.");
-        return;
-      }
-      let msg = `Halo, saya ingin memesan:`;
-      cart.forEach((c) => {
-        msg += `- ${c.name} x${c.qty} kg (Rp ${c.price.toLocaleString()} x ${c.qty} = Rp ${(
-          c.price * c.qty
-        ).toLocaleString()})%0A`;
-      });
-      msg += `Mohon info lanjutannya.`;
-      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-      window.open(url, "_blank");
-    });
-    function orderNow(idx, qty) {
+
+    function openCart(){ renderCartList(); cartModal.style.display = 'block'; cartModal.setAttribute('aria-hidden','false'); }
+    function closeCart(){ cartModal.style.display = 'none'; cartModal.setAttribute('aria-hidden','true'); }
+    cartBtn.addEventListener('click', ()=> { if (cartModal.style.display === 'block') closeCart(); else openCart(); });
+    closeCartBtn.addEventListener('click', ()=> closeCart());
+
+checkoutBtn.addEventListener('click', () => {
+  if (cart.length === 0) {
+    showToast('Keranjang kosong. Tambahkan produk sebelum pesan.', 'warn');
+    return;
+  }
+
+  let msg = 'Halo, saya ingin memesan:\n';
+  let totalHarga = 0;
+
+  cart.forEach(item => {
+    const subtotal = item.price * item.qty;
+    totalHarga += subtotal;
+    msg += `- ${item.name} x${item.qty} kg (Rp ${item.price.toLocaleString()} x ${item.qty} = Rp ${subtotal.toLocaleString()})\n`;
+  });
+
+  msg += `\nTotal Harga: Rp ${totalHarga.toLocaleString()}\n`;
+
+  const note = (orderNoteEl.value || '').trim();
+  if (note) {
+    msg += `Catatan: ${note}\n`;
+  }
+
+  msg += 'Mohon info lanjutannya.';
+
+  const encodedMsg = encodeURIComponent(msg);
+  const url = `https://wa.me/${waNumber}?text=${encodedMsg}`;
+
+  window.open(url, '_blank');
+});
+
+
+
+    function orderNow(idx, qty){
       const p = products[idx];
-      if (qty <= 0) {
-        alert("Masukkan jumlah minimal 1 kg.");
-        return;
-      }
-      if (qty > p.stock) {
-        alert("Jumlah melebihi stok tersedia.");
-        return;
-      }
-      const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(
-        p.price * qty
-      ).toLocaleString()}).`;
+      if (qty <= 0){ showToast('Masukkan jumlah minimal 1 kg.','warn'); return; }
+      if (qty > p.stock){ showToast('Jumlah melebihi stok tersedia.','warn'); return; }
+      const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(p.price*qty).toLocaleString()}).`;
       const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-      window.open(url, "_blank");
+      window.open(url, '_blank');
     }
-    document.getElementById("navHome").addEventListener("click", (e) => {
+
+    // tombol "Tentang" animasi klik dan smooth scroll cepat dari atas kebawah
+    navTentang.addEventListener('click', (e) => {
       e.preventDefault();
-      renderProducts();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const navLink = e.target;
+      navLink.style.transition = 'background-color 0.3s ease, transform 0.25s ease';
+      navLink.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+      navLink.style.transform = 'scale(0.85)';
+      setTimeout(() => {
+        navLink.style.backgroundColor = '';
+        navLink.style.transform = '';
+      }, 300);
+
+      // Animasi scroll dari atas ke bawah dengan interval
+      let start = window.pageYOffset || document.documentElement.scrollTop;
+      const footerTop = footerContact.getBoundingClientRect().top + start;
+      const distance = footerTop - start;
+      const duration = 600; // ms (agak cepat)
+      const frameRate = 60; // fps
+      const totalFrames = Math.round(duration / (1000 / frameRate));
+      let frame = 0;
+
+      const scrollAnimation = setInterval(() => {
+        frame++;
+        const progress = frame / totalFrames;
+        const ease = easeInQuad(progress);
+        window.scrollTo(0, start + distance * ease);
+        if(frame >= totalFrames){
+          clearInterval(scrollAnimation);
+        }
+      }, 1000 / frameRate);
+
+      // Easing function
+      function easeInQuad(t) {
+        return t*t;
+      }
     });
-    document.getElementById("navKategori").addEventListener("click", (e) => {
-      e.preventDefault();
-      categorySelect.focus();
-    });
-    searchInput.addEventListener("input", renderProducts);
-    categorySelect.addEventListener("change", renderProducts);
+
+    // bindings for other nav
+    document.getElementById('navHome').addEventListener('click', (e)=> { e.preventDefault(); renderProducts(); window.scrollTo({top:0, behavior:'smooth'}); });
+    document.getElementById('navKategori').addEventListener('click', (e)=> { e.preventDefault(); categorySelect.focus(); });
+    searchInput.addEventListener('input', renderProducts);
+    categorySelect.addEventListener('change', renderProducts);
+
+    // initial cart and render
     renderProducts();
     updateCartUI();
   </script>
 </body>
 </html>
-
-
