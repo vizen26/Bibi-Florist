@@ -913,13 +913,13 @@ nav a:hover {
         alert("Keranjang kosong.");
         return;
       }
-      let msg = `Halo, saya ingin memesan:%0A`;
+      let msg = `Halo, saya ingin memesan:`;
       cart.forEach((c) => {
         msg += `- ${c.name} x${c.qty} kg (Rp ${c.price.toLocaleString()} x ${c.qty} = Rp ${(
           c.price * c.qty
         ).toLocaleString()})%0A`;
       });
-      msg += `%0A Mohon info lanjutannya.`;
+      msg += `Mohon info lanjutannya.`;
       const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
       window.open(url, "_blank");
     });
@@ -955,3 +955,4 @@ nav a:hover {
   </script>
 </body>
 </html>
+
