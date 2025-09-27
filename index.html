@@ -34,18 +34,8 @@
     nav{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.06);border-radius:8px;padding:6px 12px;box-shadow:none;font-size:14px;z-index:8; display: flex; align-items: center;}
     nav a{color:white;font-weight:600;text-decoration:none;padding:4px 10px;border-radius:999px;display:inline-block;cursor:pointer;user-select:none; transition: transform 0.25s ease, background-color 0.25s ease;}
     nav a.hidden{display:none}
-
-    /* Animasi klik tombol nav tentang */
-    nav a#navTentang:active {
-      transform: scale(0.85);
-      background-color: rgba(255, 255, 255, 0.4);
-      color: var(--primary);
-    }
-    nav a#navTentang:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    /* posisi tulisan Tentang di pojok kanan atas (sudah di nav) */
+    nav a#navTentang:active { transform: scale(0.85); background-color: rgba(255, 255, 255, 0.4); color: var(--primary); }
+    nav a#navTentang:hover { background-color: rgba(255, 255, 255, 0.2); }
 
     /* bottom animated wave (header) */
     .wave-wrap{
@@ -89,20 +79,22 @@
     .muted{color:var(--muted);font-size:14px}
     .qty-input{width:140px;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
 
-    /* cart button & modal */
+    #orderNotePage {
+  border: 1.5px solid var(--primary-600); /* border tipis dengan warna utama yang lebih gelap */
+  border-radius: 12px; /* sudut membulat sesuai tema */
+  padding: 10px 12px;
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 14px;
+  color: #111827;
+  background-color: #e3f0ff; /* warna latar belakang lembut pastel biru */
+  resize: vertical; /* boleh ubah ukuran secara vertikal saja */
+  box-shadow: 0 4px 10px rgba(66,109,158,0.1); /* bayangan halus */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    /* cart button */
     #cartBtn{position:fixed;bottom:20px;right:20px;z-index:120;background:white;color:var(--primary);border-radius:999px;padding:12px 14px;box-shadow:0 10px 30px rgba(34,49,63,0.08);border:2px solid rgba(66,109,158,0.08);cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:700}
     #cartCount{background:var(--primary);color:white;padding:4px 8px;border-radius:999px;font-size:13px}
-    #cartModal{display:none;position:fixed;bottom:80px;right:20px;z-index:110;background:white;width:360px;border-radius:12px;padding:14px;box-shadow:var(--card-shadow)}
-    #cartModal h4{margin:0 0 8px}
-    .cart-list{max-height:260px;overflow:auto;font-size:14px}
-    .cart-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed #f1f5f9}
-    .cart-item .remove{background:#ef4444;color:white;border:0;padding:6px 8px;border-radius:8px;cursor:pointer}
-
-    /* confirm modals */
-    #confirmAdd,#confirmDelete{display:none;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:200;align-items:center;justify-content:center}
-    .confirm-box{background:white;padding:20px;border-radius:12px;width:320px;text-align:center;box-shadow:0 10px 30px rgba(34,49,63,0.12)}
-    .confirm-yes{background:var(--primary);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
-    .confirm-no{background:#eef2ff;color:var(--primary);border:0;padding:10px 14px;border-radius:8px;cursor:pointer;margin-left:10px}
 
     /* toast with slide + fade + small vibration */
     @keyframes toastVibrate {
@@ -146,7 +138,7 @@
 
     /* footer with different color */
     footer{
-      background: #25476a; /* lebih gelap dari header */
+      background: #25476a;
       color: white;
       padding: 28px 16px;
       margin-top: 40px;
@@ -157,8 +149,6 @@
     .footer-grid h4{margin-top:0;color:#fff}
     .footer-grid a{color:#fff;text-decoration:underline}
     .copyright{text-align:center;margin-top:18px;color:#e6efff;font-size:13px;position: relative; z-index: 2;}
-    
-    /* footer wave */
     .footer-wave-wrap{
       position: absolute;
       left: 0; right: 0; bottom: 0;
@@ -187,7 +177,6 @@
       .filter-bar input[type=search]{width:160px}
       .products{grid-template-columns:repeat(2,1fr);gap:12px}
       .card img{height:130px}
-      #cartModal{width:92%;right:4%;}
     }
     @media (max-width:420px){
       .filter-bar{flex-direction:column;gap:8;bottom:18px}
@@ -217,7 +206,6 @@
       </select>
     </div>
 
-    <!-- animated bottom wave -->
     <div class="wave-wrap" aria-hidden="true">
       <svg class="wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -239,50 +227,16 @@
     <span id="cartCount" style="margin-left:8px; font-size:13px; background:var(--primary); color:#fff; padding:4px 8px; border-radius:999px;">0</span>
   </button>
 
-  <aside id="cartModal" role="dialog" aria-hidden="true">
-    <h4>Keranjang Belanja</h4>
-    <div id="cartList" class="cart-list">
-      <p style="color: var(--muted)">Keranjang masih kosong.</p>
-    </div>
-    <div class="note-box">
-      <label for="orderNote" style="font-weight:700; font-size:13px;">Catatan untuk penjual</label>
-      <textarea id="orderNote" placeholder="Contoh: minta dibersihkan, pisahkan kepala, atau jam pengantaran..."></textarea>
-    </div>
-    <div style="margin-top:12px; display:flex; gap:8px; justify-content:flex-end;">
-      <button id="checkoutBtn" class="btn" style="background:var(--primary); color:white; border-radius:8px; padding:8px 12px;">Pesan via WA</button>
-      <button id="closeCartBtn" class="btn" style="background:#eef2ff; color:var(--primary); border-radius:8px; padding:8px 12px;">Tutup</button>
-    </div>
-  </aside>
-
-  <div id="confirmAdd" aria-hidden="true">
-    <div class="confirm-box">
-      <p style="font-weight:700;">Apakah yakin menambahkan ke keranjang?</p>
+  <!-- Modal Konfirmasi Tambah Keranjang -->
+  <div id="confirmAddModal" aria-hidden="true" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:300;align-items:center;justify-content:center;">
+    <div style="background:white;padding:20px;border-radius:12px;width:320px;text-align:center;box-shadow:0 10px 30px rgba(34,49,63,0.12);">
+      <p id="confirmAddMessage" style="font-weight:700;white-space:pre-line;"></p>
       <div style="margin-top:12px; display:flex; justify-content:center; gap:10px;">
-        <button id="confirmAddYes" class="confirm-yes">Ya</button>
-        <button id="confirmAddNo" class="confirm-no">Batal</button>
+        <button id="confirmAddYes" style="background:var(--primary);color:white;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;">Ya</button>
+        <button id="confirmAddNo" style="background:#eef2ff;color:var(--primary);border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;">Batal</button>
       </div>
     </div>
   </div>
-
-  <div id="confirmDelete" aria-hidden="true">
-    <div class="confirm-box">
-      <p style="font-weight:700;">Yakin akan menghapus produk dari keranjang?</p>
-      <div style="margin-top:12px; display:flex; justify-content:center; gap:10px;">
-        <button id="confirmDeleteYes" class="confirm-yes">Hapus</button>
-        <button id="confirmDeleteNo" class="confirm-no">Batal</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- footer wave -->
-  <div class="footer-wave-wrap" aria-hidden="true">
-    <svg class="footer-wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <use href="#wave-path"></use>
-      <use href="#wave-path" x="720" opacity="0.9"></use>
-    </svg>
-  </div>
-
-  <!-- toast elements created dynamically by JS -->
 
   <footer id="footerContact">
     <div class="footer-grid">
@@ -308,8 +262,7 @@
   <script>
     const waNumber = "6281314921298";
     let cart = [];
-    let pendingAdd = null; // {idx, qty}
-    let pendingDeleteIdx = null;
+    let pendingAdd = null;
 
     const products = [
       { name: "Ikan Mas", category: "tawar", price: 22000, stock: 50, desc: "Ikan mas segar berkualitas dari kolam.", img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-61265698/_no-brand_ikan-mas-segar-1kg-_full01.jpg" },
@@ -345,38 +298,13 @@
     const categorySelect = document.getElementById('categorySelect');
     const cartBtn = document.getElementById('cartBtn');
     const cartCountEl = document.getElementById('cartCount');
-    const cartModal = document.getElementById('cartModal');
-    const cartList = document.getElementById('cartList');
-    const checkoutBtn = document.getElementById('checkoutBtn');
-    const closeCartBtn = document.getElementById('closeCartBtn');
-    const confirmAdd = document.getElementById('confirmAdd');
-    const confirmAddYes = document.getElementById('confirmAddYes');
-    const confirmAddNo = document.getElementById('confirmAddNo');
-    const confirmDelete = document.getElementById('confirmDelete');
-    const confirmDeleteYes = document.getElementById('confirmDeleteYes');
-    const confirmDeleteNo = document.getElementById('confirmDeleteNo');
-    const orderNoteEl = document.getElementById('orderNote');
-    const navTentang = document.getElementById('navTentang');
-    const footerContact = document.getElementById('footerContact');
 
     // Helpers
     function formatRupiah(n){ return 'Rp ' + Number(n).toLocaleString('id-ID'); }
     function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"'"}[m])); }
     function parseQtyInput(input){ let val = input.trim().replace(',', '.'); let num = parseFloat(val); if (isNaN(num) || num <= 0) return null; return num; }
 
-    // TOAST helper (create floating toasts with slide+fade+vibrate animation)
-    function showToast(message,type='success',duration=3200){
-      const t = document.createElement('div');
-      t.className = 'toast ' + (type === 'warn' ? 'warn' : 'success');
-      t.innerHTML = `<div style="display:flex;flex-direction:column"><div class="title">${type==='warn'?'Perhatian':'Sukses'}</div><div style="font-size:13px;margin-top:6px">${escapeHtml(message)}</div></div>`;
-      document.body.appendChild(t);
-      // Show with animation
-      requestAnimationFrame(() => t.classList.add('show'));
-      setTimeout(() => t.classList.remove('show'), duration - 300);
-      setTimeout(() => { try { document.body.removeChild(t); } catch(e){} }, duration);
-    }
-
-    // Render product grid (same as before, omitted here for brevity)
+    // Render product grid
     function renderProducts(){
       filterBar.style.display = '';
       productsGrid.style.display = 'grid';
@@ -405,7 +333,7 @@
             <h3>${escapeHtml(p.name)}</h3>
             <div class="price">${formatRupiah(p.price)}</div>
             <div class="actions">
-              <button class="btn btn-detail">Lihat Detail</button>
+              <button class="btn btn-detail">Beli</button>
             </div>
           </div>
         `;
@@ -418,7 +346,7 @@
       });
     }
 
-    // Show detail view (same as before, omitted for brevity)
+    // Show detail view
     function showDetail(idx){
       const p = products[idx];
       filterBar.style.display = 'none';
@@ -453,141 +381,187 @@
         renderProducts();
       });
 
+      // GANTI EVENT LISTENER TOMBOL TAMBAH KERANJANG DENGAN KONFIRMASI MANUAL
       document.getElementById("addCartBtn").addEventListener('click', () => {
         const rawQty = document.getElementById("qtyInput").value;
         const qty = parseQtyInput(rawQty);
-        if (qty === null) { showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)','warn'); return; }
-        if (qty > p.stock) { showToast('Jumlah melebihi stok tersedia','warn'); return; }
-        pendingAdd = { idx, qty };
-        showConfirmAdd();
+        if (qty === null) {
+          showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)', 'warn');
+          return;
+        }
+        if (qty > p.stock) {
+          showToast('Jumlah melebihi stok tersedia', 'warn');
+          return;
+        }
+        pendingAdd = { product: p, qty: qty };
+
+        const totalPrice = qty * p.price;
+        document.getElementById('confirmAddMessage').textContent =
+          `Tambah ke keranjang:\n- Produk: ${p.name}\n- Jumlah: ${qty} kg\n- Harga total: ${formatRupiah(totalPrice)}`;
+
+        const modal = document.getElementById('confirmAddModal');
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
       });
 
       document.getElementById("orderNowBtn").addEventListener('click', () => {
         const rawQty = document.getElementById("qtyInput").value;
         const qty = parseQtyInput(rawQty);
-        if (qty === null) { showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)','warn'); return; }
-        if (qty > p.stock) { showToast('Jumlah melebihi stok tersedia','warn'); return; }
-        orderNow(idx, qty);
+        if (qty === null) { showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)', 'warn'); return; }
+        if (qty > p.stock) { showToast('Jumlah melebihi stok tersedia', 'warn'); return; }
+        const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(p.price*qty).toLocaleString()}).`;
+        const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+        window.open(url, '_blank');
       });
 
       window.scrollTo({ top: 120, behavior: "smooth" });
     }
 
-    // Confirm add handlers
-    function showConfirmAdd(){ confirmAdd.style.display = 'flex'; confirmAdd.setAttribute('aria-hidden','false'); }
-    function hideConfirmAdd(){ confirmAdd.style.display = 'none'; confirmAdd.setAttribute('aria-hidden','true'); }
-    confirmAddYes.addEventListener('click', () => {
-      if (!pendingAdd){ hideConfirmAdd(); return; }
-      const item = products[pendingAdd.idx];
-      if (pendingAdd.qty > item.stock) { showToast('Jumlah melebihi stok tersedia','warn'); pendingAdd = null; hideConfirmAdd(); return; }
-      const existing = cart.find(c => c.name === item.name);
-      if (existing) existing.qty += pendingAdd.qty; else cart.push({ name: item.name, price: item.price, qty: pendingAdd.qty });
+    // Update cart UI
+    function updateCartUI(){
+      const totalItems = cart.length;
+      cartCountEl.textContent = totalItems;
+    }
+
+    // Render halaman keranjang
+    function renderCartPage() {
+      filterBar.style.display = 'none';
+      productsGrid.style.display = 'none';
+      detailView.style.display = 'block';
+
+      detailView.innerHTML = `
+        <section id="cartPage">
+          <h2>Keranjang Belanja</h2>
+          <div id="cartItems"></div>
+          <div style="margin-top:12px;">
+            <label for="orderNotePage">Catatan untuk penjual</label><br/>
+            <textarea id="orderNotePage" placeholder="Contoh: minta dibersihkan, pisahkan kepala, atau jam pengantaran..." style="width:100%; max-width:600px; height:80px; margin-top:4px;"></textarea>
+          </div>
+          <div style="margin-top:12px;">
+            <button id="checkoutPageBtn" class="btn" style="background:var(--primary); color:white;">Pesan via WA</button>
+            <button id="backToProductsBtn" class="btn" style="background:#eef2ff; color:var(--primary); margin-left:8px;">Kembali ke Produk</button>
+          </div>
+        </section>
+      `;
+
+      const cartItemsDiv = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<p style="color:var(--muted)">Keranjang masih kosong. Yuk buruan di order</p>';
+      } else {
+        let totalPrice = 0;
+        cartItemsDiv.innerHTML = '';
+        cart.forEach((item, index) => {
+          const product = products.find(p => p.name === item.name);
+          const subtotal = item.price * item.qty;
+          totalPrice += subtotal;
+          const div = document.createElement('div');
+          div.style.marginBottom = '12px';
+          div.style.display = 'flex';
+          div.style.alignItems = 'center';
+          div.style.gap = '12px';
+          div.innerHTML = `
+            <img src="${product?.img || ''}" alt="${escapeHtml(item.name)}" style="width:80px; height:60px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+            <div style="flex:1;">
+              <div style="font-weight:700">${escapeHtml(item.name)}</div>
+              <div>Harga per kg: ${formatRupiah(item.price)}</div>
+              <div>Jumlah: ${item.qty} kg</div>
+              <div>Subtotal: ${formatRupiah(subtotal)}</div>
+            </div>
+            <button class="btn" style="background:#ef4444; color:#fff; padding:6px 10px; border-radius:8px; white-space:nowrap;" data-idx="${index}">Hapus</button>
+          `;
+          cartItemsDiv.appendChild(div);
+          div.querySelector('button').addEventListener('click', () => {
+            cart.splice(index, 1);
+            updateCartUI();
+            renderCartPage();
+          });
+        });
+        const totalDiv = document.createElement('div');
+        totalDiv.style.fontWeight = '700';
+        totalDiv.style.marginTop = '10px';
+        totalDiv.textContent = `Total: ${formatRupiah(totalPrice)}`;
+        cartItemsDiv.appendChild(totalDiv);
+      }
+
+      document.getElementById('backToProductsBtn').addEventListener('click', () => {
+        detailView.style.display = 'none';
+        filterBar.style.display = '';
+        productsGrid.style.display = 'grid';
+      });
+
+      document.getElementById('checkoutPageBtn').addEventListener('click', () => {
+        if (cart.length === 0) {
+          showToast('Keranjang kosong. Tambahkan produk sebelum pesan.', 'warn');
+          return;
+        }
+
+        let msg = 'Halo, saya ingin memesan:\n';
+        let totalHarga = 0;
+
+        cart.forEach(item => {
+          const subtotal = item.price * item.qty;
+          totalHarga += subtotal;
+          msg += `- ${item.name} x${item.qty} kg (Rp ${item.price.toLocaleString()} x ${item.qty} = Rp ${subtotal.toLocaleString()})\n`;
+        });
+
+        msg += `\nTotal Harga: Rp ${totalHarga.toLocaleString()}\n`;
+
+        const note = (document.getElementById('orderNotePage').value || '').trim();
+        msg += note ? `Catatan: ${note}\n\n` : `Catatan: -\n\n`;
+
+        msg += 'Mohon untuk dapat disiapkan ya, terima kasih.';
+
+        const encodedMsg = encodeURIComponent(msg);
+        const url = `https://wa.me/${waNumber}?text=${encodedMsg}`;
+
+        window.open(url, '_blank');
+      });
+    }
+
+    // Toast helper
+    function showToast(message,type='success',duration=3200){
+      const t = document.createElement('div');
+      t.className = 'toast ' + (type === 'warn' ? 'warn' : 'success');
+      t.innerHTML = `<div style="display:flex;flex-direction:column"><div class="title">${type==='warn'?'Perhatian':'Sukses'}</div><div style="font-size:13px;margin-top:6px">${escapeHtml(message)}</div></div>`;
+      document.body.appendChild(t);
+      requestAnimationFrame(() => t.classList.add('show'));
+      setTimeout(() => t.classList.remove('show'), duration - 300);
+      setTimeout(() => { try { document.body.removeChild(t); } catch(e){} }, duration);
+    }
+
+    // Event listener modal konfirmasi
+    document.getElementById('confirmAddYes').addEventListener('click', () => {
+      if (!pendingAdd) return;
+      const { product, qty } = pendingAdd;
+      const existing = cart.find(c => c.name === product.name);
+      if (existing) existing.qty += qty;
+      else cart.push({ name: product.name, price: product.price, qty });
       updateCartUI();
       pendingAdd = null;
-      hideConfirmAdd();
-      showToast('Berhasil ditambahkan ke keranjang','success');
-      openCart();
+
+      const modal = document.getElementById('confirmAddModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+
+      showToast('Berhasil ditambahkan ke keranjang', 'success');
     });
-    confirmAddNo.addEventListener('click', ()=>{ pendingAdd = null; hideConfirmAdd(); });
 
-    // Confirm delete handlers
-    function showConfirmDelete(idx){ pendingDeleteIdx = idx; confirmDelete.style.display = 'flex'; confirmDelete.setAttribute('aria-hidden','false'); }
-    function hideConfirmDelete(){ pendingDeleteIdx = null; confirmDelete.style.display = 'none'; confirmDelete.setAttribute('aria-hidden','true'); }
-    confirmDeleteYes.addEventListener('click', () => {
-      if (pendingDeleteIdx === null) { hideConfirmDelete(); return; }
-      cart.splice(pendingDeleteIdx, 1);
-      updateCartUI();
-      renderCartList();
-      hideConfirmDelete();
-      showToast('Produk dihapus dari keranjang','warn');
+    document.getElementById('confirmAddNo').addEventListener('click', () => {
+      pendingAdd = null;
+      const modal = document.getElementById('confirmAddModal');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
     });
-    confirmDeleteNo.addEventListener('click', ()=> hideConfirmDelete());
 
-    function updateCartUI(){
-      const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-      cartCountEl.textContent = totalQty;
-      renderCartList();
-    }
+    // Event listeners
+    cartBtn.addEventListener('click', () => {
+      renderCartPage();
+    });
 
-    function renderCartList(){
-      cartList.innerHTML = '';
-      if (cart.length === 0) {
-        cartList.innerHTML = '<p style="color:var(--muted)">Keranjang masih kosong.</p>';
-        return;
-      }
-      let totalPrice = 0;
-      cart.forEach((item, index) => {
-        totalPrice += item.price * item.qty;
-        const row = document.createElement('div');
-        row.className = 'cart-item';
-        row.innerHTML = `
-          <div>
-            <div style="font-weight:700">${escapeHtml(item.name)}</div>
-            <div style="font-size:13px;color:var(--muted)">Rp ${(item.price * item.qty).toLocaleString()}</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-weight:700">${item.qty} kg</div>
-            <button class="remove" data-idx="${index}">Hapus</button>
-          </div>
-        `;
-        cartList.appendChild(row);
-        row.querySelector('.remove').addEventListener('click', () => { showConfirmDelete(index); });
-      });
-      const tot = document.createElement('div');
-      tot.style.marginTop = '10px';
-      tot.style.fontWeight = '800';
-      tot.textContent = 'Total: ' + formatRupiah(totalPrice);
-      cartList.appendChild(tot);
-    }
+    searchInput.addEventListener('input', renderProducts);
+    categorySelect.addEventListener('change', renderProducts);
 
-    function openCart(){ renderCartList(); cartModal.style.display = 'block'; cartModal.setAttribute('aria-hidden','false'); }
-    function closeCart(){ cartModal.style.display = 'none'; cartModal.setAttribute('aria-hidden','true'); }
-    cartBtn.addEventListener('click', ()=> { if (cartModal.style.display === 'block') closeCart(); else openCart(); });
-    closeCartBtn.addEventListener('click', ()=> closeCart());
-
-checkoutBtn.addEventListener('click', () => {
-  if (cart.length === 0) {
-    showToast('Keranjang kosong. Tambahkan produk sebelum pesan.', 'warn');
-    return;
-  }
-
-  let msg = 'Halo, saya ingin memesan:\n';
-  let totalHarga = 0;
-
-  cart.forEach(item => {
-    const subtotal = item.price * item.qty;
-    totalHarga += subtotal;
-    msg += `- ${item.name} x${item.qty} kg (Rp ${item.price.toLocaleString()} x ${item.qty} = Rp ${subtotal.toLocaleString()})\n`;
-  });
-
-  msg += `\nTotal Harga: Rp ${totalHarga.toLocaleString()}\n`;
-
-  const note = (orderNoteEl.value || '').trim();
-  if (note) {
-    msg += `Catatan: ${note}\n`;
-  }
-
-  msg += 'Mohon info lanjutannya.';
-
-  const encodedMsg = encodeURIComponent(msg);
-  const url = `https://wa.me/${waNumber}?text=${encodedMsg}`;
-
-  window.open(url, '_blank');
-});
-
-
-
-    function orderNow(idx, qty){
-      const p = products[idx];
-      if (qty <= 0){ showToast('Masukkan jumlah minimal 1 kg.','warn'); return; }
-      if (qty > p.stock){ showToast('Jumlah melebihi stok tersedia.','warn'); return; }
-      const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(p.price*qty).toLocaleString()}).`;
-      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
-    }
-
-    // tombol "Tentang" animasi klik dan smooth scroll cepat dari atas kebawah
-    navTentang.addEventListener('click', (e) => {
+    document.getElementById('navTentang').addEventListener('click', (e) => {
       e.preventDefault();
       const navLink = e.target;
       navLink.style.transition = 'background-color 0.3s ease, transform 0.25s ease';
@@ -598,38 +572,34 @@ checkoutBtn.addEventListener('click', () => {
         navLink.style.transform = '';
       }, 300);
 
-      // Animasi scroll dari atas ke bawah dengan interval
       let start = window.pageYOffset || document.documentElement.scrollTop;
-      const footerTop = footerContact.getBoundingClientRect().top + start;
+      const footerTop = document.getElementById('footerContact').getBoundingClientRect().top + start;
       const distance = footerTop - start;
-      const duration = 600; // ms (agak cepat)
-      const frameRate = 60; // fps
+      const duration = 600;
+      const frameRate = 60;
       const totalFrames = Math.round(duration / (1000 / frameRate));
       let frame = 0;
 
       const scrollAnimation = setInterval(() => {
         frame++;
         const progress = frame / totalFrames;
-        const ease = easeInQuad(progress);
+        const ease = progress * progress;
         window.scrollTo(0, start + distance * ease);
-        if(frame >= totalFrames){
-          clearInterval(scrollAnimation);
-        }
+        if(frame >= totalFrames) clearInterval(scrollAnimation);
       }, 1000 / frameRate);
-
-      // Easing function
-      function easeInQuad(t) {
-        return t*t;
-      }
     });
 
-    // bindings for other nav
-    document.getElementById('navHome').addEventListener('click', (e)=> { e.preventDefault(); renderProducts(); window.scrollTo({top:0, behavior:'smooth'}); });
-    document.getElementById('navKategori').addEventListener('click', (e)=> { e.preventDefault(); categorySelect.focus(); });
-    searchInput.addEventListener('input', renderProducts);
-    categorySelect.addEventListener('change', renderProducts);
+    document.getElementById('navHome').addEventListener('click', (e) => {
+      e.preventDefault();
+      renderProducts();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+    document.getElementById('navKategori').addEventListener('click', (e) => {
+      e.preventDefault();
+      categorySelect.focus();
+    });
 
-    // initial cart and render
+    // Initialize
     renderProducts();
     updateCartUI();
   </script>
