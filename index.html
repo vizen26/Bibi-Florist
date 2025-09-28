@@ -3,605 +3,608 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lapak Ikan Kamad</title>
-
-  <!-- Fonts & icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <title>Bibi Florist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
   <style>
-    :root{
-      --primary:#426d9e;
-      --primary-600:#385c87;
-      --bg:#f3fbff;
-      --muted:#6b7280;
-      --card-shadow:0 6px 18px rgba(34,49,63,0.06);
-      --radius:12px;
-      --accent:#76c7ff;
+    :root {
+      --logo-green: #2a4a2d;
+      --primary: #2a4a2d;
+      --primary-600: #20391e;
+      --bg: #cedfd2;
+      --muted: #476b58;
+      --card-shadow: 0 6px 18px rgba(34,49,63,0.08);
+      --radius: 14px;
+      --accent: #bbdbc6;
+      --soft-blue: #e4eff5;
+      --white: #fff;
     }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:"Poppins",Arial,sans-serif;background:var(--bg);color:#111827;-webkit-font-smoothing:antialiased;position:relative;}
-
-    /* Header */
-    header{
-      background:linear-gradient(180deg,var(--primary) 0%, #2f5a84 60%);
-      color:white;text-align:center;padding:34px 16px 130px;position:relative;overflow:visible;
+    body {
+      margin: 0;
+      font-family: "Quicksand", Arial, sans-serif;
+      background: var(--bg) url('https://svgshare.com/i/vjz.svg') no-repeat right 64px top 48px;
+      background-size: 430px;
+      color: #213b2b;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 70px;
     }
-    .logo-box{display:inline-block;background:rgba(255,255,255,0.08);color:white;padding:8px 14px;border-radius:10px;font-weight:700;font-size:20px;margin-bottom:8px}
-    header h1{font-family:"Oswald",sans-serif;margin:6px 0 4px;font-size:28px;letter-spacing:2px;position:relative;z-index:6}
-    header p{margin:0;opacity:0.95;position:relative;z-index:6}
-
-    nav{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.06);border-radius:8px;padding:6px 12px;box-shadow:none;font-size:14px;z-index:8; display: flex; align-items: center;}
-    nav a{color:white;font-weight:600;text-decoration:none;padding:4px 10px;border-radius:999px;display:inline-block;cursor:pointer;user-select:none; transition: transform 0.25s ease, background-color 0.25s ease;}
-    nav a.hidden{display:none}
-    nav a#navTentang:active { transform: scale(0.85); background-color: rgba(255, 255, 255, 0.4); color: var(--primary); }
-    nav a#navTentang:hover { background-color: rgba(255, 255, 255, 0.2); }
-
-    /* bottom animated wave (header) */
-    .wave-wrap{
-      position:absolute;left:0;right:0;bottom:0;height:120px;pointer-events:none;overflow:hidden;z-index:4;
-    }
-    .wave-svg{
-      display:block;width:200%;height:120px;transform:translateX(0);will-change:transform;
-      animation: waveMove 8s ease-in-out infinite;
-    }
-    .wave-svg use{fill:#f3fbff}
-    @keyframes waveMove{
-      0%{transform:translateX(0)}
-      50%{transform:translateX(-20%)}
-      100%{transform:translateX(0)}
-    }
-
-    /* filter box on top of wave */
-    .filter-bar{position:absolute;left:50%;transform:translateX(-50%);bottom:40px;display:flex;gap:12px;align-items:center;justify-content:center;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(246,251,255,0.95));border-radius:14px;box-shadow:0 8px 30px rgba(34,49,63,0.12);min-width:320px;max-width:92%;z-index:7;border:1px solid rgba(66,109,158,0.06)}
-    .filter-bar input[type=search],.filter-bar select{padding:10px 12px;border:1px solid rgba(66,109,158,0.08);border-radius:10px;min-width:140px;outline:none;font-size:14px;background:transparent}
-    .filter-bar input[type=search]{width:380px;max-width:58vw}
-
-    main{max-width:1200px;margin:24px auto;padding:0 16px 60px;position:relative;z-index:2}
-    .products{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .card{background:white;border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform 0.12s}
-    .card:hover{transform:translateY(-6px)}
-    .card img{width:100%;height:150px;object-fit:cover;display:block}
-    .card-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
-    .card h3{margin:0;color:var(--primary);font-size:16px}
-    .card .price{font-weight:700;color:var(--primary-600)}
-    .card .actions{margin-top:auto;display:flex;justify-content:center}
-    .btn{border:0;border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:700}
-    .btn-detail{background:var(--primary);color:white}
-    .btn-detail:hover{background:var(--primary-600)}
-
-    #detailView{display:none;max-width:900px;margin:0 auto}
-    .detail-card{background:white;border-radius:12px;padding:18px;box-shadow:var(--card-shadow);display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
-    .detail-left{flex:1 1 360px}
-    .detail-left img{width:100%;border-radius:10px;height:auto;object-fit:cover}
-    .detail-right{flex:1 1 360px;display:flex;flex-direction:column;gap:12px}
-    .detail-right h2{margin:0;color:var(--primary);font-size:22px}
-    .muted{color:var(--muted);font-size:14px}
-    .qty-input{width:140px;padding:10px;border-radius:8px;border:1px solid #e6e9ef}
-
-    #orderNotePage {
-  border: 1.5px solid var(--primary-600); /* border tipis dengan warna utama yang lebih gelap */
-  border-radius: 12px; /* sudut membulat sesuai tema */
-  padding: 10px 12px;
-  font-family: "Poppins", Arial, sans-serif;
-  font-size: 14px;
-  color: #111827;
-  background-color: #e3f0ff; /* warna latar belakang lembut pastel biru */
-  resize: vertical; /* boleh ubah ukuran secara vertikal saja */
-  box-shadow: 0 4px 10px rgba(66,109,158,0.1); /* bayangan halus */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-    /* cart button */
-    #cartBtn{position:fixed;bottom:20px;right:20px;z-index:120;background:white;color:var(--primary);border-radius:999px;padding:12px 14px;box-shadow:0 10px 30px rgba(34,49,63,0.08);border:2px solid rgba(66,109,158,0.08);cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:700}
-    #cartCount{background:var(--primary);color:white;padding:4px 8px;border-radius:999px;font-size:13px}
-
-    /* toast with slide + fade + small vibration */
-    @keyframes toastVibrate {
-      0%, 100% { transform: translateY(0); }
-      20%, 60% { transform: translateY(-3px); }
-      40%, 80% { transform: translateY(3px); }
-    }
-    .toast{
-      position: fixed;
-      right: 20px;
-      bottom: 120px;
-      z-index: 220;
-      min-width: 260px;
-      max-width: 92%;
-      border-radius: 10px;
-      padding: 12px 14px;
-      box-shadow: 0 12px 30px rgba(34,49,63,0.12);
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 280ms ease, transform 280ms ease;
-    }
-    .toast.show{
-      opacity: 1;
-      transform: translateY(0);
-      animation: toastVibrate 0.3s ease 1;
-    }
-    .toast.success{
-      background: linear-gradient(90deg,#e6fbff,#d7f0ff);
-      border: 1px solid rgba(66,109,158,0.08);
-      color: #0b3b5a;
-    }
-    .toast.warn{
-      background: linear-gradient(90deg,#fff7e6,#fff3df);
-      border: 1px solid rgba(175,120,0,0.08);
-      color: #6b3b00;
-    }
-    .toast .title{font-weight:800}
-
-    /* footer with different color */
-    footer{
-      background: #25476a;
-      color: white;
-      padding: 28px 16px;
-      margin-top: 40px;
+    header {
+      background: var(--logo-green);
+      color: #233928;
+      text-align: center;
+      padding: 16px 18px 28px;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
+      border-bottom-left-radius: 56px;
+      border-bottom-right-radius: 56px;
+      box-shadow: 0 2px 18px #607d6344;
+      z-index: 10;
     }
-    .footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;position: relative; z-index: 2;}
-    .footer-grid h4{margin-top:0;color:#fff}
-    .footer-grid a{color:#fff;text-decoration:underline}
-    .copyright{text-align:center;margin-top:18px;color:#e6efff;font-size:13px;position: relative; z-index: 2;}
-    .footer-wave-wrap{
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 120px; pointer-events: none;
-      overflow: hidden; z-index: 1;
-    }
-    .footer-wave-svg {
+    .logo-img {
       display: block;
-      width: 200%;
-      height: 120px;
-      transform: translateX(0);
-      will-change: transform;
-      animation: footerWaveMove 12s linear infinite reverse;
+      margin: 0 auto;
+      height: 180px;
+      width: 180px;
+      object-fit: contain;
+      background: var(--white);
+      border-radius: 24px;
+      border: 3px solid var(--logo-green);
+      box-shadow: 0 2px 8px #2a4a2d44;
     }
-    .footer-wave-svg use { fill: #1b3659; }
-    @keyframes footerWaveMove {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(-10%); }
-      100% { transform: translateX(0); }
+    @media (max-width: 600px) {
+      .logo-img { height: 120px; width: 120px; }
     }
-
-    @media (max-width:900px){
-      .detail-card{flex-direction:column}
-      .footer-grid{grid-template-columns:1fr}
-      .filter-bar{bottom:22px;padding:10px}
-      .filter-bar input[type=search]{width:160px}
-      .products{grid-template-columns:repeat(2,1fr);gap:12px}
-      .card img{height:130px}
+    header h1 { display: none; }
+    .filter-bar { display: none; }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+      position: relative;
+      z-index: 2;
     }
-    @media (max-width:420px){
-      .filter-bar{flex-direction:column;gap:8;bottom:18px}
-      .filter-bar input[type=search]{width:100%}
-      .products{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 600px) {
+      main { padding-top: 16px; }
+    }
+    .products { 
+      display: grid; gap: 21px;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 820px) {
+      .products { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .logo-img { height: 90px; width: 90px; }
+      .detail-card, #cartPage, #aboutPage { padding:14px 5vw; }
+      header { padding: 9px 4vw 18px; }
+      header p { font-size: 13px; }
+    }
+    .card {
+      background: var(--white); 
+      border-radius: var(--radius); 
+      box-shadow: var(--card-shadow); 
+      overflow: hidden; display: flex; flex-direction: column; 
+      transition: transform 0.13s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .card:hover { 
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 14px 26px #2a4a2d33;
+    }
+    .card img { width: 100%; height: 153px; object-fit: cover; display: block; border-radius: 0 0 16px 16px; }
+    .card-body { 
+      padding: 14px; display: flex; flex-direction: column; gap: 9px; flex: 1;
+      background: var(--white); border-radius: 0 0 16px 16px;
+    }
+    .card h3 { margin: 0; color: var(--primary-600); font-size: 17px; font-family:"Montserrat Alternates"; letter-spacing:1px;}
+    .card .price { font-weight: 700; color: var(--logo-green);}
+    .card .actions { margin-top: auto; display: flex; justify-content: center;}
+    .btn { border: 0; border-radius: 12px; padding: 9px 13px; cursor: pointer; font-weight: 700; font-family:"Quicksand"; background: var(--logo-green); color: var(--white); transition: background 0.17s;}
+    .btn-detail { background: var(--accent); color: var(--logo-green);}
+    .btn-detail:hover { background: var(--logo-green); color: var(--white);}
+    #detailView { display: none; max-width: 900px; margin: 0 auto;}
+    .detail-card, #cartPage, #aboutPage { 
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 24px 28px;
+      color: var(--primary-600);
+      font-size: 16px;
+      max-width: 700px;
+      margin: 28px auto;
+      border: none;
+    }
+    .detail-card { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap;}
+    .detail-left { flex: 1 1 360px;}
+    .detail-left img { width: 100%; border-radius: 13px; height: auto; object-fit: cover;}
+    .detail-right { flex: 1 1 360px; display: flex; flex-direction: column; gap: 13px;}
+    .detail-right h2 { margin: 0; color: var(--logo-green); font-family:"Montserrat Alternates"; font-size: 23px; letter-spacing:1px;}
+    .muted { color: var(--muted); font-size: 14px;}
+    @media (max-width:500px) {
+      .payment-card { padding:7px 2vw; max-width:95vw; }
+      .payment-card * { font-size:0.87rem; }
+    }
+    #cartPage h2 { margin-top:0; color: var(--logo-green);}
+    #cartPage textarea {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--soft-blue);
+      border: 1.5px solid var(--accent);
+      width: 100%;
+      min-height: 40px;
+      font-family: "Quicksand", Arial, sans-serif;
+      font-size: 15px;
+      color: var(--primary-600);
+      resize: vertical;
+      box-sizing: border-box;
+      line-height: 1.6;
+      transition: border-color .3s;
+      overflow: auto;
+      margin-top: 4px;
+    }
+    #cartPage textarea:focus { border-color: var(--logo-green); }
+    #aboutPage h2 { color: var(--logo-green); font-family:"Montserrat Alternates"; font-size: 26px; margin-bottom: 14px; font-weight: 700; border-bottom: 2px solid var(--logo-green); padding-bottom: 7px; }
+    #aboutPage h3 { color: var(--primary-600); font-size: 21px; margin-top: 26px; margin-bottom: 10px;}
+    #aboutPage p { margin: 0 0 13px;}
+    #aboutPage p a { color: var(--logo-green); text-decoration: none;}
+    #aboutBackBtn,
+    #cartPage .btn,
+    .detail-right .btn {
+      border-radius: 10px;
+      background: var(--logo-green);
+      color: var(--white);
+      padding: 10px 18px;
+      font-weight: 600;
+      box-shadow: none;
+      border: none;
+      margin-top: 10px;
+    }
+    #aboutBackBtn:hover,
+    #cartPage .btn:hover,
+    .detail-right .btn:hover { background: var(--primary-600); color: var(--white);}
+    .about-icon { vertical-align: middle; color: var(--logo-green); margin-right: 6px; font-size: 20px; opacity: 0.8;}
+    #bottomNav {
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); background: var(--white); border-top: 1.5px solid #eaeaea; width: 290px; display: flex; justify-content: space-around; align-items: center; padding: 8px 0; border-radius: 16px 16px 0 0; box-shadow: 0 -3px 16px #d2d2d244; z-index: 130;
+    }
+    .nav-icon {
+      background: none; border: none; cursor: pointer; font-size: 28px; color: var(--logo-green); position: relative; outline: none; transition: transform 0.23s ease, color 0.23s ease;
+    }
+    .nav-icon:hover, .nav-icon.active { color: var(--primary-600); transform: scale(1.15);}
+    #cartCount { position: absolute; top: 2px; right: 2px; background: var(--logo-green); color: var(--white); padding: 2px 6px; border-radius: 999px; font-size: 10px; font-weight: 700;}
+    #confirmAddModal { display: none; position: fixed; inset: 0; background: rgba(44,64,63,0.23); z-index: 300; align-items: center; justify-content: center;}
+    #confirmAddModal > div { background: var(--white); padding: 21px; border-radius: 13px; width: 330px; text-align: center; box-shadow: 0 10px 30px #2a4a2d44;}
+    #confirmAddModal p { font-weight: 700; white-space: pre-line; margin: 0; font-family:"Quicksand";}
+    #confirmAddModal button { font-weight: 700; border: none; padding: 10px 14px; border-radius: 9px; cursor: pointer; margin: 0 5px; font-family:"Quicksand"; background: var(--logo-green); color: var(--white);}
+    #confirmAddModal button:hover { background: var(--primary-600); }
+    #footerContact { display: none;}
+    /* Tombol detail produk custom */
+    .order-btn {
+      background: linear-gradient(90deg, var(--accent) 0%, var(--logo-green) 100%);
+      color: #fff;
+      border: 2.5px solid var(--accent);
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 4px 18px #2a4a2d14;
+      transition: box-shadow .18s, transform .13s, filter .16s;
+      position: relative;
+    }
+    .order-btn:hover {
+      box-shadow: 0 7px 24px #2a4a2d33;
+      filter: brightness(1.09);
+    }
+    .order-btn:active {
+      animation: btnPulse 0.44s both;
+    }
+    .cart-btn:active {
+      animation: btnPulse 0.38s both;
+    }
+    @keyframes btnPulse {
+      0%   { transform: scale(1);}
+      32%  { transform: scale(1.11);}
+      48%  { transform: scale(0.95);}
+      100% { transform: scale(1);}
+    }
+    /* Payment section special style */
+    .payment-card {
+      background: #fff;
+      border-radius: 12px;
+      color: var(--logo-green);
+      box-shadow: 0 6px 22px rgba(34,49,63,0.14), 0 1px 6px #2a4a2d21;
+      padding: 13px 15px 11px 15px;
+      max-width: 249px;
+      margin: 12px auto 18px auto;
+      font-family: 'Montserrat Alternates', 'Quicksand', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .payment-card * { color: var(--logo-green); font-size: 0.89rem; font-family: 'Quicksand', Arial, sans-serif; }
+    .pay-bank {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom:2px;
+    }
+    .bank-logo {
+      height: 15px;
+      width: auto;
+      background: none;
+      border-radius: 3px;
+      padding: 0;
+    }
+    .bank-name {
+      font-size: 0.93rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .pay-info {
+      display: flex;
+      align-items: center;
+      gap:6px;
+      line-height:1.27;
+      font-size: 0.89rem;
+    }
+    .pay-label {
+      min-width: 72px;
+      font-weight: 700;
+    }
+    .pay-value, .rekening {
+      background: #e4eff5;
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-weight: 500;
+      font-family: 'Montserrat Alternates','Quicksand',monospace;
+      font-size: 0.88rem;
+      color: var(--logo-green);
+      letter-spacing: 0.9px;
+    }
+    .btn-copy {
+      background: var(--accent, #bbdbc6);
+      color: var(--logo-green);
+      border: none;
+      border-radius: 4px;
+      padding: 3px 7px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: 'Quicksand', Arial, sans-serif;
+      cursor: pointer;
+      margin-left: 4px;
+      transition: background .16s;
+      box-shadow: 0 2px 3px #2a4a2d0b;
+    }
+    .btn-copy:hover {
+      background: #e4eff5;
+      color: var(--logo-green);
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-box">LIK</div>
-    <h1>Lapak Ikan Kamad</h1>
-    <p>Pilihan ikan & seafood segar dan berkualitas</p>
-
-    <nav>
-      <a href="#" id="navHome" class="hidden">Beranda</a>
-      <a href="#" id="navKategori" class="hidden">Kategori</a>
-      <a href="#footerContact" id="navTentang" role="button" tabindex="0">Tentang</a>
-    </nav>
-
-    <div class="filter-bar" id="filterBar" aria-hidden="false">
-      <input id="searchInput" type="search" placeholder="Cari produk (nama)..." />
-      <select id="categorySelect" aria-label="Kategori">
-        <option value="all">Semua Kategori</option>
-        <option value="laut">Laut</option>
-        <option value="tawar">Tawar</option>
-      </select>
-    </div>
-
-    <div class="wave-wrap" aria-hidden="true">
-      <svg class="wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <path id="wave-path" d="M0,32 C120,80 240,80 360,48 C480,16 600,0 720,16 C840,32 960,80 1080,64 C1200,48 1320,0 1440,32 L1440 120 L0 120 Z"></path>
-        </defs>
-        <use href="#wave-path" x="0"></use>
-        <use href="#wave-path" x="720" opacity="0.95"></use>
-      </svg>
-    </div>
-  </header>
-
-  <main>
-    <section id="productsGrid" class="products" aria-live="polite"></section>
-    <section id="detailView"></section>
-  </main>
-
-  <button id="cartBtn" aria-label="Keranjang">
-    <span style="font-size:18px; color: var(--primary)">🛒</span>
-    <span id="cartCount" style="margin-left:8px; font-size:13px; background:var(--primary); color:#fff; padding:4px 8px; border-radius:999px;">0</span>
+<header>
+  <img src="https://i.ibb.co.com/ZptswZcw/Chat-GPT-Image-Sep-28-2025-12-45-53-PM.png" alt="Logo Bibi Florist" class="logo-img" />
+</header>
+<div class="filter-bar" style="display:none"></div>
+<main>
+  <section id="productsGrid" class="products" aria-live="polite"></section>
+  <section id="detailView"></section>
+</main>
+<nav id="bottomNav" role="navigation" aria-label="Navigasi utama">
+  <button id="navHome" aria-label="Beranda" title="Beranda" class="nav-icon">
+    <span class="fa fa-home"></span>
   </button>
-
-  <!-- Modal Konfirmasi Tambah Keranjang -->
-  <div id="confirmAddModal" aria-hidden="true" style="display:none;position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:300;align-items:center;justify-content:center;">
-    <div style="background:white;padding:20px;border-radius:12px;width:320px;text-align:center;box-shadow:0 10px 30px rgba(34,49,63,0.12);">
-      <p id="confirmAddMessage" style="font-weight:700;white-space:pre-line;"></p>
-      <div style="margin-top:12px; display:flex; justify-content:center; gap:10px;">
-        <button id="confirmAddYes" style="background:var(--primary);color:white;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;">Ya</button>
-        <button id="confirmAddNo" style="background:#eef2ff;color:var(--primary);border:none;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700;">Batal</button>
-      </div>
+  <button id="cartBtn" aria-label="Keranjang" title="Keranjang" class="nav-icon">
+    <span class="fa fa-shopping-cart"></span>
+    <span id="cartCount">0</span>
+  </button>
+  <button id="navTentang" aria-label="Tentang" title="Tentang" class="nav-icon">
+    <span class="fa fa-info-circle"></span>
+  </button>
+</nav>
+<div id="confirmAddModal" aria-hidden="true">
+  <div>
+    <p id="confirmAddMessage"></p>
+    <div>
+      <button id="confirmAddYes">Ya</button>
+      <button id="confirmAddNo">Batal</button>
     </div>
   </div>
+</div>
+<footer id="footerContact"></footer>
+<script>
+  const waNumber = "6285697710949";
+  let cart = [];
+  let pendingAdd = null;
+  const products = [
+{name:"Dried Flower (Baby’s Breath)",category:"dried",price:150000,stock:100,desc:"Dried Flower Baby’s Breath varian bouquet cantik.",img:null},
+{name:"Dried Flower (Baby’s Breath Premium)",category:"dried",price:175000,stock:100,desc:"Baby’s Breath premium bunga kering, cocok untuk hadiah.",img:null},
+{name:"Artificial Flower",category:"artificial",price:150000,stock:100,desc:"Bouquet bunga artificial, banyak pilihan warna.",img:null},
+{name:"Fresh Flower (Mawar & Baby’s Breath)",category:"fresh",price:300000,stock:100,desc:"Bouquet fresh flower kombinasi mawar dan baby’s breath.",img:null},
+{name:"Artificial Flower Box Mini",category:"box",price:75000,stock:100,desc:"Box bunga artificial mini hiasan meja, hadiah kecil.",img:null},
+{name:"Artificial Flower Box Medium",category:"box",price:120000,stock:100,desc:"Box bunga artificial ukuran medium, rangkaian cantik.",img:null},
+{name:"Fresh Flower Box",category:"box",price:135000,stock:100,desc:"Box fresh flower, cocok untuk surprise atau hadiah.",img:null},
+{name:"Artificial Flower Box Large",category:"box",price:150000,stock:100,desc:"Box bunga artificial besar, bisa custom warna.",img:null},
+{name:"Money Bouquet",category:"money",price:150000,stock:100,desc:"Bouquet uang dan bunga artificial kombinasi.",img:null},
+{name:"Artificial Flower Bouquet",category:"artificial",price:175000,stock:100,desc:"Bouquet bunga artificial untuk berbagai acara.",img:null},
+{name:"Fresh Flower Bouquet",category:"fresh",price:200000,stock:100,desc:"Bouquet fresh flower mix premium.",img:null},
+{name:"Bloom Box Balloon & Photo",category:"box",price:225000,stock:100,desc:"Bloom box balon dengan foto, bisa custom request.",img:null},
+{name:"Bloom Box Balloon & Stitch",category:"box",price:245000,stock:100,desc:"Bloom box balon dengan foto & stitch edition.",img:null},
+{name:"Bloom Box Balloon & Doraemon",category:"box",price:300000,stock:100,desc:"Bloom box balon dengan foto & doraemon edition.",img:null}
+  ];
+  function formatRupiah(n) { return 'Rp ' + Number(n).toLocaleString('id-ID'); }
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"'"}) ); }
 
-  <footer id="footerContact">
-    <div class="footer-grid">
-      <div>
-        <h4>Tentang Lapak Ikan Kamad</h4>
-        <p>Kami menyediakan ikan & seafood segar berkualitas langsung dari nelayan lokal. Berkomitmen pada kesegaran, keberlanjutan, dan pelayanan cepat untuk pelanggan rumahan dan usaha kuliner.</p>
-      </div>
-      <div>
-        <h4>Kontak</h4>
-        <p><span class="fa fa-phone"></span> 0813-1492-1298</p>
-        <p><span class="fa fa-whatsapp"></span> <a href="https://wa.me/6281314921298" target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a></p>
-        <p><span class="fa fa-envelope"></span> <a href="mailto:lapakikan@kamad.com">vizenamstrong26@gmail.com</a></p>
-      </div>
-      <div>
-        <h4>Alamat</h4>
-        <p><span class="fa fa-map-marker"></span> Jl. Aria Wangsakara, Sodong, Kec. Tigaraksa, Kabupaten Tangerang, Banten 15720</p>
-        <a href="https://maps.app.goo.gl/5jkWYmCjq6igatkW9" target="_blank">Lihat di Google Maps</a>
-      </div>
-    </div>
-    <div class="copyright">&copy; 2025 Lapak Ikan Kamad - Semua Hak Dilindungi</div>
-  </footer>
+  const productsGrid = document.getElementById('productsGrid');
+  const detailView = document.getElementById('detailView');
+  const cartBtn = document.getElementById('cartBtn');
+  const cartCountEl = document.getElementById('cartCount');
 
-  <script>
-    const waNumber = "6281314921298";
-    let cart = [];
-    let pendingAdd = null;
-
-    const products = [
-      { name: "Ikan Mas", category: "tawar", price: 22000, stock: 50, desc: "Ikan mas segar berkualitas dari kolam.", img: "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/106/MTA-61265698/_no-brand_ikan-mas-segar-1kg-_full01.jpg" },
-      { name: "Ikan Nila", category: "tawar", price: 20000, stock: 60, desc: "Ikan nila segar dari tambak, rasa lezat untuk berbagai masakan.", img: "https://images.tokopedia.net/img/cache/700/VqbcmM/2020/8/16/e049a15d-50ec-4ff7-b6cf-cc051658b426.jpg" },
-      { name: "Ikan Lele", category: "tawar", price: 18000, stock: 100, desc: "Lele segar dengan daging empuk, favorit untuk pecel lele.", img: "https://unair.ac.id/wp-content/uploads/2023/10/17a.png" },
-      { name: "Ikan Gabus", category: "tawar", price: 55000, stock: 20, desc: "Ikan gabus segar, kaya manfaat dan protein.", img: "https://cdn.rri.co.id/berita/Manokwari/o/1734591648686-460137255_1232585444431624_8616931341207029902_n/hqokmoquf2a9qvk.jpeg" },
-      { name: "Belut", category: "tawar", price: 35000, stock: 40, desc: "Belut sawah segar, cocok digoreng krispi atau dibuat rica.", img: "https://down-id.img.susercontent.com/file/id-11134207-7r98o-lmejfisw2ww75e" },
-      { name: "Ikan Mujair", category: "tawar", price: 22000, stock: 70, desc: "Mujair segar dengan rasa khas, enak digoreng atau dibakar.", img: "https://cdn.rri.co.id/berita/Bengkalis/o/1726677300202-WhatsApp_Image_2024-09-18_at_23.23.51/lfarczf05ddfghf.jpeg" },
-      { name: "Ikan Kembung", category: "laut", price: 25000, stock: 48, desc: "Ikan kembung segar langsung dari laut, cocok untuk digoreng atau dibakar.", img: "https://asset.kompas.com/crops/kNQ_HEY8ew08T9-hv5pgLYcD_4k=/61x0:906x563/375x240/data/photo/2021/01/21/600942b282255.jpg" },
-      { name: "Ikan Tuna", category: "laut", price: 85000, stock: 12, desc: "Tuna segar dengan daging tebal dan gurih, kaya protein.", img: "https://fishinfojatim.net/assets/uploads/produk_photo/1675915212375-1.jpg" },
-      { name: "Ikan Bandeng", category: "laut", price: 28000, stock: 40, desc: "Bandeng segar, cocok dibuat presto atau panggang.", img: "https://cdn.digitaldesa.com/uploads/marketplace/products/cd90bb1f4b1c8c4777f7a8603431917e.jpg" },
-      { name: "Ikan Kakap Merah", category: "laut", price: 95000, stock: 25, desc: "Kakap merah premium, daging tebal dan manis alami.", img: "https://asset-a.grid.id/crop/0x0:0x0/x/photo/2024/01/10/ikan-kakap-merah-dan-putih-1-20240110042917.jpg" },
-      { name: "Ikan Tongkol", category: "laut", price: 30000, stock: 50, desc: "Tongkol segar, praktis diolah menjadi berbagai menu.", img: "https://assets.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p3/31/2024/02/07/1707274188227-4148169123.jpg" },
-      { name: "Ikan Ayam-Ayam", category: "laut", price: 48000, stock: 18, desc: "Ikan ayam-ayam laut, daging empuk dan gurih.", img: "https://image.indonetwork.co.id/f-webp/products/thumbs/600x600/2012/10/09/781e24e3f57376ec2fe3c7534cad0780.jpg" },
-      { name: "Ikan Tenggiri", category: "laut", price: 90000, stock: 8, desc: "Tenggiri segar, daging putih padat, cocok untuk sashimi atau steak ikan.", img: "https://down-id.img.susercontent.com/file/id-11134207-7r992-lya2z5i771god9" },
-      { name: "Ikan Salmon", category: "laut", price: 180000, stock: 3, desc: "Salmon import berkualitas, cocok untuk sashimi.", img: "https://asset.kompas.com/crops/1ZpbbEXk78_HsJWTG0Cf025voP4=/0x0:1000x667/1200x800/data/photo/2020/06/25/5ef414adef8ef.jpg" },
-      { name: "Cumi Segar", category: "laut", price: 95000, stock: 10, desc: "Cumi segar, ideal untuk tumis, bakar, atau goreng tepung.", img: "https://down-id.img.susercontent.com/file/id-11134201-7qul3-lh8yg4gnuywz23" },
-      { name: "Udang Vaname", category: "laut", price: 120000, stock: 20, desc: "Udang vaname segar, ideal untuk goreng tepung atau bakar.", img: "https://www.beritadaerah.co.id/wp-content/uploads/2021/03/Udang-Vaname-Foto-KKP.jpg" },
-      { name: "Udang Windu", category: "laut", price: 150000, stock: 15, desc: "Udang windu / galah, daging lebih padat dan rasa khas.", img: "https://media.istockphoto.com/id/1470165913/id/foto/udang-windu-segar-di-pasar-ikan.jpg?s=170667a&w=0&k=20&c=PQXoRXYP3tnMWpkCKoihIfoCX81KZUpGcxA3tf_mX2A=" },
-      { name: "Udang Harimau", category: "laut", price: 140000, stock: 10, desc: "Udang harimau ukuran besar, cocok untuk hidangan spesial.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBPOL80Q0sCMCwNRtZweBV9BcnFD366PDwkQ&s" },
-      { name: "Kerang Hijau", category: "laut", price: 30000, stock: 50, desc: "Kerang hijau segar, cocok untuk sop, tumis, atau bakar.", img: "https://pasarbadung.com/wp-content/uploads/2025/05/21970489-93f7-40f7-9cfb-fd51c78d8d34.jpg" },
-      { name: "Kerang Dara", category: "laut", price: 40000, stock: 35, desc: "Kerang dara / blood cockle, rasa khas dan mudah diolah.", img: "https://cdn.grid.id/crop/0x0:0x0/700x465/photo/2023/01/13/tips-memilih-kerang-yang-segarj-20230113012617.jpg" },
-      { name: "Kerang Lala", category: "laut", price: 20000, stock: 60, desc: "Kerang lala segar, cocok untuk tumisan atau sambal.", img: "https://down-id.img.susercontent.com/file/0ba55f6bcda6bf843f6538e8e059cf83_tn.webp" },
-      { name: "Lobster Air Tawar", category: "laut", price: 300000, stock: 8, desc: "Lobster air tawar segar, cita rasa premium.", img: "https://down-id.img.susercontent.com/file/id-11134207-23030-bk1m8ibuqsov4d" },
-      { name: "Lobster Laut", category: "laut", price: 400000, stock: 5, desc: "Lobster laut segar kualitas premium.", img: "https://cf.shopee.co.id/file/f91e96d0f05d8d3e7127cefd89cc4747" }
-    ];
-
-    // DOM refs
-    const productsGrid = document.getElementById('productsGrid');
-    const detailView = document.getElementById('detailView');
-    const filterBar = document.getElementById('filterBar');
-    const searchInput = document.getElementById('searchInput');
-    const categorySelect = document.getElementById('categorySelect');
-    const cartBtn = document.getElementById('cartBtn');
-    const cartCountEl = document.getElementById('cartCount');
-
-    // Helpers
-    function formatRupiah(n){ return 'Rp ' + Number(n).toLocaleString('id-ID'); }
-    function escapeHtml(s){ return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"'"}[m])); }
-    function parseQtyInput(input){ let val = input.trim().replace(',', '.'); let num = parseFloat(val); if (isNaN(num) || num <= 0) return null; return num; }
-
-    // Render product grid
-    function renderProducts(){
-      filterBar.style.display = '';
-      productsGrid.style.display = 'grid';
-      detailView.style.display = 'none';
-      productsGrid.innerHTML = '';
-      const q = (searchInput.value || '').trim().toLowerCase();
-      const cat = categorySelect.value || 'all';
-
-      const filtered = products.filter((p) => {
-        const matchQ = !q || p.name.toLowerCase().includes(q);
-        const matchCat = cat === 'all' || p.category === cat;
-        return matchQ && matchCat;
+  function renderProducts() {
+    productsGrid.style.display = 'grid';
+    detailView.style.display = 'none';
+    productsGrid.innerHTML = '';
+    products.forEach((p, idx) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${escapeHtml(p.name)}" />
+        <div class="card-body">
+          <h3>${escapeHtml(p.name)}</h3>
+          <div class="price">${formatRupiah(p.price)}</div>
+          <div class="actions">
+            <button class="btn btn-detail">Beli</button>
+          </div>
+        </div>`;
+      card.addEventListener('click', () => {
+        showDetail(idx);
+        window.history.pushState({page:'detail', idx:idx}, '', '');
       });
+      card.querySelector('.btn-detail').addEventListener('click', e => {
+        e.stopPropagation();
+        showDetail(idx);
+        window.history.pushState({page:'detail', idx:idx}, '', '');
+      });
+      productsGrid.appendChild(card);
+    });
+    setActiveNav('navHome');
+    window.history.replaceState({page:'products'}, '', '');
+  }
 
-      if (filtered.length === 0) {
-        productsGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:var(--muted)">Tidak ada produk ditemukan.</div>`;
-        return;
-      }
-
-      filtered.forEach((p) => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `
+  function showDetail(idx){
+    const p = products[idx];
+    productsGrid.style.display = 'none';
+    detailView.style.display = 'block';
+    detailView.innerHTML = `
+      <div class="detail-card">
+        <div class="detail-left">
           <img src="${p.img}" alt="${escapeHtml(p.name)}" />
-          <div class="card-body">
-            <h3>${escapeHtml(p.name)}</h3>
-            <div class="price">${formatRupiah(p.price)}</div>
-            <div class="actions">
-              <button class="btn btn-detail">Beli</button>
-            </div>
-          </div>
-        `;
-        const btn = card.querySelector('.btn-detail');
-        btn.addEventListener('click', () => {
-          const idx = products.indexOf(p);
-          showDetail(idx);
-        });
-        productsGrid.appendChild(card);
-      });
-    }
-
-    // Show detail view
-    function showDetail(idx){
-      const p = products[idx];
-      filterBar.style.display = 'none';
-      productsGrid.style.display = 'none';
-      detailView.innerHTML = `
-        <div class="detail-card">
-          <div class="detail-left">
-            <img src="${p.img}" alt="${escapeHtml(p.name)}" />
-          </div>
-          <div class="detail-right">
-            <h2>${escapeHtml(p.name)}</h2>
-            <div class="muted"><strong>Kategori:</strong> ${p.category === 'laut' ? 'Laut' : 'Tawar'}</div>
-            <div style="font-weight:700; font-size:18px; margin-top:6px">${formatRupiah(p.price)} / kg</div>
-            <div class="muted">Stok: ${p.stock} kg</div>
-            <p style="margin-top:8px">${escapeHtml(p.desc)}</p>
-
-            <label for="qtyInput"><strong>Jumlah Order (kg)</strong></label>
-            <input id="qtyInput" class="qty-input" type="text" placeholder="Misal: 1.5 atau 2,7" value="1" />
-
-            <div style="margin-top:10px; display:flex; gap:10px; align-items:center;">
-              <button id="addCartBtn" class="btn" style="background:var(--primary); color:white; border-radius:8px; padding:10px 14px;">Tambah ke Keranjang</button>
-              <button id="orderNowBtn" class="btn" style="background:#eef2ff; color:var(--primary); border-radius:8px; padding:10px 14px;">Pesan Sekarang via WA</button>
-              <a href="#" id="backToList" style="margin-left:6px; color:var(--muted); text-decoration:none;">← Kembali ke Produk</a>
-            </div>
+        </div>
+        <div class="detail-right">
+          <h2>${escapeHtml(p.name)}</h2>
+          <div style="font-weight:700; font-size:18px; margin-top:6px">${formatRupiah(p.price)}</div>
+          <p style="margin-top:8px">${escapeHtml(p.desc)}</p>
+          <div style="margin-top:10px; display:flex; gap:16px; align-items:center; justify-content:space-between;">
+            <button id="orderNowBtn" class="btn order-btn"><span style="margin-right:6px;">🌸</span>Order Sekarang</button>
+            <button id="addCartBtn" class="btn cart-btn">Tambah ke Keranjang</button>
+            <a href="#" id="backToList" style="margin-left:6px; color:var(--muted); text-decoration:none;">← Kembali</a>
           </div>
         </div>
-      `;
-      detailView.style.display = 'block';
-
-      document.getElementById("backToList").addEventListener('click', (e) => {
-        e.preventDefault();
-        renderProducts();
-      });
-
-      // GANTI EVENT LISTENER TOMBOL TAMBAH KERANJANG DENGAN KONFIRMASI MANUAL
-      document.getElementById("addCartBtn").addEventListener('click', () => {
-        const rawQty = document.getElementById("qtyInput").value;
-        const qty = parseQtyInput(rawQty);
-        if (qty === null) {
-          showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)', 'warn');
-          return;
-        }
-        if (qty > p.stock) {
-          showToast('Jumlah melebihi stok tersedia', 'warn');
-          return;
-        }
-        pendingAdd = { product: p, qty: qty };
-
-        const totalPrice = qty * p.price;
-        document.getElementById('confirmAddMessage').textContent =
-          `Tambah ke keranjang:\n- Produk: ${p.name}\n- Jumlah: ${qty} kg\n- Harga total: ${formatRupiah(totalPrice)}`;
-
-        const modal = document.getElementById('confirmAddModal');
-        modal.style.display = 'flex';
-        modal.setAttribute('aria-hidden', 'false');
-      });
-
-      document.getElementById("orderNowBtn").addEventListener('click', () => {
-        const rawQty = document.getElementById("qtyInput").value;
-        const qty = parseQtyInput(rawQty);
-        if (qty === null) { showToast('Masukkan jumlah order yang valid (misal: 1,5 atau 2.7)', 'warn'); return; }
-        if (qty > p.stock) { showToast('Jumlah melebihi stok tersedia', 'warn'); return; }
-        const msg = `Halo, saya ingin memesan ${p.name} sebanyak ${qty} kg (Rp ${(p.price*qty).toLocaleString()}).`;
-        const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
-        window.open(url, '_blank');
-      });
-
-      window.scrollTo({ top: 120, behavior: "smooth" });
-    }
-
-    // Update cart UI
-    function updateCartUI(){
-      const totalItems = cart.length;
-      cartCountEl.textContent = totalItems;
-    }
-
-    // Render halaman keranjang
-    function renderCartPage() {
-      filterBar.style.display = 'none';
-      productsGrid.style.display = 'none';
-      detailView.style.display = 'block';
-
-      detailView.innerHTML = `
-        <section id="cartPage">
-          <h2>Keranjang Belanja</h2>
-          <div id="cartItems"></div>
-          <div style="margin-top:12px;">
-            <label for="orderNotePage">Catatan untuk penjual</label><br/>
-            <textarea id="orderNotePage" placeholder="Contoh: minta dibersihkan, pisahkan kepala, atau jam pengantaran..." style="width:100%; max-width:600px; height:80px; margin-top:4px;"></textarea>
-          </div>
-          <div style="margin-top:12px;">
-            <button id="checkoutPageBtn" class="btn" style="background:var(--primary); color:white;">Pesan via WA</button>
-            <button id="backToProductsBtn" class="btn" style="background:#eef2ff; color:var(--primary); margin-left:8px;">Kembali ke Produk</button>
-          </div>
-        </section>
-      `;
-
-      const cartItemsDiv = document.getElementById('cartItems');
-      if (cart.length === 0) {
-        cartItemsDiv.innerHTML = '<p style="color:var(--muted)">Keranjang masih kosong. Yuk buruan di order</p>';
-      } else {
-        let totalPrice = 0;
-        cartItemsDiv.innerHTML = '';
-        cart.forEach((item, index) => {
-          const product = products.find(p => p.name === item.name);
-          const subtotal = item.price * item.qty;
-          totalPrice += subtotal;
-          const div = document.createElement('div');
-          div.style.marginBottom = '12px';
-          div.style.display = 'flex';
-          div.style.alignItems = 'center';
-          div.style.gap = '12px';
-          div.innerHTML = `
-            <img src="${product?.img || ''}" alt="${escapeHtml(item.name)}" style="width:80px; height:60px; object-fit:cover; border-radius:8px; flex-shrink:0;">
-            <div style="flex:1;">
-              <div style="font-weight:700">${escapeHtml(item.name)}</div>
-              <div>Harga per kg: ${formatRupiah(item.price)}</div>
-              <div>Jumlah: ${item.qty} kg</div>
-              <div>Subtotal: ${formatRupiah(subtotal)}</div>
-            </div>
-            <button class="btn" style="background:#ef4444; color:#fff; padding:6px 10px; border-radius:8px; white-space:nowrap;" data-idx="${index}">Hapus</button>
-          `;
-          cartItemsDiv.appendChild(div);
-          div.querySelector('button').addEventListener('click', () => {
-            cart.splice(index, 1);
-            updateCartUI();
-            renderCartPage();
-          });
-        });
-        const totalDiv = document.createElement('div');
-        totalDiv.style.fontWeight = '700';
-        totalDiv.style.marginTop = '10px';
-        totalDiv.textContent = `Total: ${formatRupiah(totalPrice)}`;
-        cartItemsDiv.appendChild(totalDiv);
-      }
-
-      document.getElementById('backToProductsBtn').addEventListener('click', () => {
-        detailView.style.display = 'none';
-        filterBar.style.display = '';
-        productsGrid.style.display = 'grid';
-      });
-
-      document.getElementById('checkoutPageBtn').addEventListener('click', () => {
-        if (cart.length === 0) {
-          showToast('Keranjang kosong. Tambahkan produk sebelum pesan.', 'warn');
-          return;
-        }
-
-        let msg = 'Halo, saya ingin memesan:\n';
-        let totalHarga = 0;
-
-        cart.forEach(item => {
-          const subtotal = item.price * item.qty;
-          totalHarga += subtotal;
-          msg += `- ${item.name} x${item.qty} kg (Rp ${item.price.toLocaleString()} x ${item.qty} = Rp ${subtotal.toLocaleString()})\n`;
-        });
-
-        msg += `\nTotal Harga: Rp ${totalHarga.toLocaleString()}\n`;
-
-        const note = (document.getElementById('orderNotePage').value || '').trim();
-        msg += note ? `Catatan: ${note}\n\n` : `Catatan: -\n\n`;
-
-        msg += 'Mohon untuk dapat disiapkan ya, terima kasih.';
-
-        const encodedMsg = encodeURIComponent(msg);
-        const url = `https://wa.me/${waNumber}?text=${encodedMsg}`;
-
-        window.open(url, '_blank');
-      });
-    }
-
-    // Toast helper
-    function showToast(message,type='success',duration=3200){
-      const t = document.createElement('div');
-      t.className = 'toast ' + (type === 'warn' ? 'warn' : 'success');
-      t.innerHTML = `<div style="display:flex;flex-direction:column"><div class="title">${type==='warn'?'Perhatian':'Sukses'}</div><div style="font-size:13px;margin-top:6px">${escapeHtml(message)}</div></div>`;
-      document.body.appendChild(t);
-      requestAnimationFrame(() => t.classList.add('show'));
-      setTimeout(() => t.classList.remove('show'), duration - 300);
-      setTimeout(() => { try { document.body.removeChild(t); } catch(e){} }, duration);
-    }
-
-    // Event listener modal konfirmasi
-    document.getElementById('confirmAddYes').addEventListener('click', () => {
-      if (!pendingAdd) return;
-      const { product, qty } = pendingAdd;
-      const existing = cart.find(c => c.name === product.name);
-      if (existing) existing.qty += qty;
-      else cart.push({ name: product.name, price: product.price, qty });
-      updateCartUI();
-      pendingAdd = null;
-
-      const modal = document.getElementById('confirmAddModal');
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
-
-      showToast('Berhasil ditambahkan ke keranjang', 'success');
-    });
-
-    document.getElementById('confirmAddNo').addEventListener('click', () => {
-      pendingAdd = null;
-      const modal = document.getElementById('confirmAddModal');
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
-    });
-
-    // Event listeners
-    cartBtn.addEventListener('click', () => {
-      renderCartPage();
-    });
-
-    searchInput.addEventListener('input', renderProducts);
-    categorySelect.addEventListener('change', renderProducts);
-
-    document.getElementById('navTentang').addEventListener('click', (e) => {
-      e.preventDefault();
-      const navLink = e.target;
-      navLink.style.transition = 'background-color 0.3s ease, transform 0.25s ease';
-      navLink.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
-      navLink.style.transform = 'scale(0.85)';
-      setTimeout(() => {
-        navLink.style.backgroundColor = '';
-        navLink.style.transform = '';
-      }, 300);
-
-      let start = window.pageYOffset || document.documentElement.scrollTop;
-      const footerTop = document.getElementById('footerContact').getBoundingClientRect().top + start;
-      const distance = footerTop - start;
-      const duration = 600;
-      const frameRate = 60;
-      const totalFrames = Math.round(duration / (1000 / frameRate));
-      let frame = 0;
-
-      const scrollAnimation = setInterval(() => {
-        frame++;
-        const progress = frame / totalFrames;
-        const ease = progress * progress;
-        window.scrollTo(0, start + distance * ease);
-        if(frame >= totalFrames) clearInterval(scrollAnimation);
-      }, 1000 / frameRate);
-    });
-
-    document.getElementById('navHome').addEventListener('click', (e) => {
+      </div>
+    `;
+    document.getElementById("backToList").addEventListener('click', e => {
       e.preventDefault();
       renderProducts();
-      window.scrollTo({top:0, behavior:'smooth'});
+      setActiveNav('navHome');
     });
-    document.getElementById('navKategori').addEventListener('click', (e) => {
-      e.preventDefault();
-      categorySelect.focus();
+    document.getElementById("addCartBtn").addEventListener('click', function() {
+      this.style.animation = "btnPulse 0.38s";
+      setTimeout(()=>this.style.animation = "", 380);
+      pendingAdd = { product: p, qty: 1 };
+      const totalPrice = p.price; // qty selalu 1
+      document.getElementById('confirmAddMessage').textContent =
+        `Tambah ke keranjang:\n- Produk: ${p.name}\n- Jumlah: 1\n- Harga total: ${formatRupiah(totalPrice)}`;
+      const modal = document.getElementById('confirmAddModal');
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
     });
+document.getElementById("orderNowBtn").addEventListener('click', function() {
+  this.style.animation = "btnPulse 0.44s";
+  setTimeout(()=>this.style.animation = "", 440);
+  const harga = formatRupiah(p.price);
+  const msg = `Halo, saya ingin memesan ${p.name} \nHarga: ${harga}`;
+  const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+});
 
-    // Initialize
+    setActiveNav(null);
+  }
+
+  function updateCartUI() { cartCountEl.textContent = cart.length; }
+  function renderCartPage() {
+    productsGrid.style.display = 'none';
+    detailView.style.display = 'block';
+    detailView.innerHTML = `
+      <section id="cartPage">
+        <h2>Keranjang Belanja</h2>
+        <div id="cartItems"></div>
+        <div style="margin-top:12px;">
+          <label for="orderNotePage">Catatan untuk penjual</label><br/>
+          <textarea id="orderNotePage" placeholder="Contoh: request khusus rangkaian, warna dominan, dll..."></textarea>
+        </div>
+        <div style="margin-top:12px;">
+          <button id="checkoutPageBtn" class="btn">Pesan via WA</button>
+          <button id="backToProductsBtn" class="btn" style="background:var(--accent); color:var(--logo-green)">Kembali ke Produk</button>
+        </div>
+      </section>`;
+    const cartItemsDiv = document.getElementById('cartItems');
+    if(cart.length === 0){
+      cartItemsDiv.innerHTML = '<p style="color:var(--muted)">Keranjang masih kosong.</p>';
+    } else {
+      let totalPrice = 0;
+      cartItemsDiv.innerHTML = '';
+      cart.forEach((item, idx) => {
+        const product = products.find(p => p.name === item.name);
+        totalPrice += item.price;
+        const div = document.createElement('div');
+        div.style.marginBottom = '12px';
+        div.style.display = 'flex';
+        div.style.alignItems = 'center';
+        div.style.gap = '12px';
+        div.innerHTML = `
+          <img src="${product?.img || ''}" alt="${escapeHtml(item.name)}" style="width:80px; height:60px; object-fit:cover; border-radius:8px; flex-shrink:0;">
+          <div style="flex:1;">
+            <div style="font-weight:700">${escapeHtml(item.name)}</div>
+            <div>Harga: ${formatRupiah(item.price)}</div>
+          </div>
+          <button class="btn" style="background:#d44; color:#fff; padding:6px 10px; border-radius:8px; white-space:nowrap;" data-idx="${idx}">Hapus</button>
+        `;
+        cartItemsDiv.appendChild(div);
+        div.querySelector('button').addEventListener('click', () => {
+          cart.splice(idx, 1);
+          updateCartUI();
+          renderCartPage();
+        });
+      });
+      const totalDiv = document.createElement('div');
+      totalDiv.style.fontWeight = '700';
+      totalDiv.style.marginTop = '10px';
+      totalDiv.textContent = `Total: ${formatRupiah(totalPrice)}`;
+      cartItemsDiv.appendChild(totalDiv);
+    }
+    document.getElementById('backToProductsBtn').addEventListener('click', () => {
+      renderProducts();
+      setActiveNav('navHome');
+    });
+    document.getElementById('checkoutPageBtn').addEventListener('click', () => {
+      if(cart.length === 0){
+        alert('Keranjang kosong. Tambahkan produk sebelum pesan.'); return;
+      }
+      let msg = 'Halo, saya ingin memesan:\n';
+      let totalHarga = 0;
+      cart.forEach(item => {
+        totalHarga += item.price;
+        msg += `- ${item.name} (Rp ${item.price.toLocaleString()})\n`;
+      });
+      msg += `\nTotal Harga: Rp ${totalHarga.toLocaleString()}\n`;
+      const note = (document.getElementById('orderNotePage').value || '').trim();
+      msg += note ? `Catatan: ${note}\n\n` : 'Catatan: -\n\n';
+      msg += 'Mohon untuk dapat disiapkan ya, terima kasih.';
+      const encodedMsg = encodeURIComponent(msg);
+      const url = `https://wa.me/${waNumber}?text=${encodedMsg}`;
+      window.open(url, '_blank');
+    });
+    setActiveNav('cartBtn');
+    window.history.replaceState({page:'cart'}, '', '');
+  }
+
+function renderAboutPage() {
+  productsGrid.style.display = 'none';
+  detailView.style.display = 'block';
+  detailView.innerHTML = `
+  <section id="aboutPage" role="main" aria-labelledby="aboutTitle" style="position:relative;">
+    <h2 id="aboutTitle">Tentang Bibi Florist</h2>
+    <p style="font-weight:bold; font-size:19px; color:var(--logo-green); margin-bottom:8px;">
+      Bibi Florist – Hadiahkan Kebahagiaan dengan Sentuhan Elegan dari Bibi Florist.
+    </p>
+    <p>
+Bibi Florist menghadirkan buket bunga segar, bunga artifisial, buket snack dan uang, serta jasa hias mahar dan hantaran pernikahan dengan sentuhan modern, elegan, dan penuh makna. Setiap rangkaian dikerjakan dengan detail dan ketelitian untuk mewakili keindahan, doa, serta kebahagiaan dalam setiap momen berharga seperti ulang tahun, wisuda, pernikahan, hingga ucapan terima kasih.
+    </p>
+    <h3>Kontak</h3>
+    <p><span class="fa fa-phone about-icon" aria-hidden="true"></span> 0856-9771-0949</p>
+    <p><span class="fa fa-whatsapp about-icon" aria-hidden="true"></span> <a href="https://wa.me/6285697710949" target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a></p>
+    <p><span class="fa fa-envelope about-icon" aria-hidden="true"></span> <a href="mailto:imasyuningsih443@gmail.com">imasyuningsih443@gmail.com</a></p>
+    <h3 style="margin-bottom:18px; color:var(--logo-green);">Pembayaran</h3>
+<div class="payment-card">
+  <div class="pay-bank">
+    <img src="https://th.bing.com/th/id/R.4d692006015fd37ed4fd155ceefe9d88?rik=YDbEo%2fzsssVmPA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-HL8IH_ZHKvI%2fUl-kk_7AC_I%2fAAAAAAAAC6M%2fb7BWRYGdn8w%2fs1600%2fBCA-Bank-Logo-blue.png&ehk=7%2fTz85jERnSu1EVuPQi4qCQHtzNt%2bxTv%2fZiS0x4waYM%3d&risl=&pid=ImgRaw&r=0" alt="BCA" class="bank-logo" />
+  </div>
+  <div class="pay-info">
+    <span class="pay-label">Penerima:</span>
+    <span class="pay-value">Imas Yuningsih</span>
+  </div>
+  <div class="pay-info">
+    <span class="pay-label">No. Rekening:</span>
+    <span class="rekening">8880164083</span>
+    <button class="btn-copy" onclick="navigator.clipboard.writeText('8880164083')">Copy</button>
+  </div>
+</div>
+    <h3><span class="fa fa-map-marker about-icon" aria-hidden="true"></span> Alamat</h3>
+    <p>Jl. Kp. Tapos RT.01/RW.01 No. 104 Tapos, Kec. Tigaraksa, Kabupaten Tangerang, Banten 15720</p>
+    <div style="margin:10px 0 14px; max-width:100%; height:200px; border-radius:12px; overflow:hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.07);">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d63453.37467253562!2d106.4007605!3d-6.2852883!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e42079ebd30e4b7%3A0x6c4e74639669204c!2sBibi%20Florist!5e0!3m2!1sid!2sid!4v1759054237717!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <button id="aboutBackBtn" class="btn" style="background:var(--accent); color:var(--logo-green)">Kembali ke Produk</button>
+  </section>`;
+  document.getElementById('aboutBackBtn').addEventListener('click', () => {
+    renderProducts();
+    setActiveNav('navHome');
+  });
+  window.history.replaceState({page:'about'}, '', '');
+  setActiveNav('navTentang');
+}
+
+  function setActiveNav(activeId) {
+    document.querySelectorAll('#bottomNav .nav-icon').forEach(btn => {
+      btn.classList.toggle('active', btn.id === activeId);
+    });
+  }
+
+  document.getElementById('navHome').addEventListener('click', e => {
+    e.preventDefault();
+    renderProducts();
+    setActiveNav('navHome');
+  });
+  cartBtn.addEventListener('click', () => {
+    renderCartPage();
+    setActiveNav('cartBtn');
+  });
+  document.getElementById('navTentang').addEventListener('click', e => {
+    e.preventDefault();
+    renderAboutPage();
+    setActiveNav('navTentang');
+  });
+
+  document.getElementById('confirmAddYes').addEventListener('click', () => {
+    if(!pendingAdd) return;
+    const {product, qty} = pendingAdd;
+    const existing = cart.find(c => c.name === product.name);
+    if(existing) existing.qty += qty;
+    else cart.push({name: product.name, price: product.price, qty});
+    updateCartUI();
+    pendingAdd = null;
+    const modal = document.getElementById('confirmAddModal');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    alert('Berhasil ditambahkan ke keranjang');
+  });
+  document.getElementById('confirmAddNo').addEventListener('click', () => {
+    pendingAdd = null;
+    const modal = document.getElementById('confirmAddModal');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+  });
+
+  window.addEventListener('DOMContentLoaded', function() {
+    window.history.replaceState({page:'products'}, '', '');
     renderProducts();
     updateCartUI();
-  </script>
+    setActiveNav('navHome');
+  });
+
+  window.addEventListener('popstate', function(event) {
+    if(event.state){
+      switch(event.state.page){
+        case 'products': renderProducts(); setActiveNav('navHome'); break;
+        case 'cart': renderCartPage(); setActiveNav('cartBtn'); break;
+        case 'about': renderAboutPage(); setActiveNav('navTentang'); break;
+        case 'detail': showDetail(event.state.idx); setActiveNav(null); break;
+        default: renderProducts(); setActiveNav('navHome');
+      }
+    }else{
+      renderProducts();
+      setActiveNav('navHome');
+    }
+  });
+</script>
 </body>
 </html>
